@@ -1,5 +1,6 @@
 export {};
 import type { Dialect } from "sequelize";
+import { TimeSpan } from "./common";
 
 declare global {
   namespace NodeJS {
@@ -12,9 +13,9 @@ declare global {
       readonly DB_NAME: string;
       readonly DB_PORT: number;
       readonly JWT_ACCESS_SECRET: string;
-      readonly JWT_ACCESS_EXPIRES_IN: string;
+      readonly JWT_ACCESS_EXPIRES_IN: TimeSpan;
       readonly JWT_REFRESH_SECRET: string;
-      readonly JWT_REFRESH_EXPIRES_IN: string;
+      readonly JWT_REFRESH_EXPIRES_IN: TimeSpan;
     }
   }
 }

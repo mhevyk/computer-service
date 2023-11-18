@@ -7,11 +7,12 @@ import {
   RequestWithCookies,
 } from "../types/request";
 import AuthService from "../services/auth";
+import parseTimeSpanToMilliseconds from "../utils/parseTimeSpanToMilliseconds";
 
 const AUTH_COOKIE_NAME = "refreshToken";
 const AUTH_COOKIE_OPTIONS: CookieOptions = {
   httpOnly: true,
-  maxAge: 100000, // TODO: replace with actual number of milliseconds
+  maxAge: parseTimeSpanToMilliseconds(process.env.JWT_REFRESH_EXPIRES_IN),
 } as const;
 
 class AuthController {
