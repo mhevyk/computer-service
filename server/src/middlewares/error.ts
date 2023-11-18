@@ -11,7 +11,12 @@ export default function (
   console.log(err);
 
   if (err instanceof APIError) {
-    return res.status(err.status).json({ message: err.message });
+    return res
+      .status(err.status)
+      .json({
+        message: err.message,
+        errors: err.errors.map(error => error.msg),
+      });
   }
 
   return res.status(500).json({ message: "Непередбачувана помилка сервера" });

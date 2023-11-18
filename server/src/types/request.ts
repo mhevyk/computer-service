@@ -1,6 +1,5 @@
 import { Request } from "express";
-
-type Role = "USER" | "ADMIN";
+import { Role } from "../permissions/roles";
 
 export type RegistrationBody = {
   username: string;
