@@ -74,7 +74,14 @@ class AuthService {
     return { ...tokens, user: userDto };
   }
 
-  async logout(refreshToken: string) {}
+  async logout(refreshToken: string) {
+    if (!refreshToken) {
+      throw APIError.Unauthourized();
+    }
+
+    const token = await TokenService.removeRefreshToken(refreshToken);
+    return token;
+  }
 
   async refresh(refreshToken: string) {}
 }

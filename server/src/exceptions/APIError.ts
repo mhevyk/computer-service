@@ -17,4 +17,8 @@ export default class APIError extends Error {
   static Validation(errors: ValidationError[]) {
     return new APIError("Помилка валідації", 400, errors);
   }
+
+  static Unauthourized() {
+    return new APIError("Користувач не авторизований", 401);
+  }
 }

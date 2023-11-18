@@ -18,3 +18,25 @@ Content-Type: application/json
     "password": "admin",
     "role": "ADMIN"
 }
+
+###
+
+
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username": "admin5",
+    "password": "admin"
+}
+
+
+###
+
+POST http://localhost:5000/auth/logout
+Content-Type: application/json
+
+{
+    "username": "admin5",
+    "password": "admin"
+}

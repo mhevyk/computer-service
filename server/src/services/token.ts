@@ -32,6 +32,18 @@ class TokenService {
       options
     );
   }
+
+  async removeRefreshToken(refreshToken: string) {
+    const queryCondition = { where: { refresh_token: refreshToken } };
+    const recordToDelete = await TokenModel.findOne(queryCondition);
+
+    if (!recordToDelete) {
+      throw new Error("Refresh токен не був знайдений");
+    }
+
+    await TokenModel.destroy(queryCondition);
+    return recordToDelete.refresh_token;
+  }
 }
 
 export default new TokenService();
