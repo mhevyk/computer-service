@@ -8,7 +8,7 @@ import {
 } from "../types/request";
 import AuthService from "../services/auth";
 import { ROLES } from "../permissions/roles";
-import { AUTH_COOKIE_NAME, AUTH_COOKIE_OPTIONS } from "../constants/global";
+import { AUTH_COOKIE_KEY, AUTH_COOKIE_OPTIONS } from "../constants/global";
 
 class AuthController {
   async registration(
@@ -24,7 +24,7 @@ class AuthController {
         password,
         ROLES.USER
       );
-      res.cookie(AUTH_COOKIE_NAME, userData.refreshToken, AUTH_COOKIE_OPTIONS);
+      res.cookie(AUTH_COOKIE_KEY, userData.refreshToken, AUTH_COOKIE_OPTIONS);
 
       return res.json(userData);
     } catch (error) {
@@ -38,6 +38,12 @@ class AuthController {
     next: NextFunction
   ) {
     try {
+      const { username, password } = req.body;
+
+      const userData = await AuthService.login(username, password);
+      res.cookie(AUTH_COOKIE_KEY, userData.refreshToken, AUTH_COOKIE_OPTIONS);
+
+      return res.json(userData);
     } catch (error) {
       next(error);
     }

@@ -6,7 +6,10 @@ import { RegistrationBody } from "../types/request";
 
 class UserService {
   async findUserByUsername(username: string) {
-    return await UserModel.findOne({ where: { username } });
+    return await UserModel.findOne({
+      where: { username },
+      include: [{ model: RoleModel, attributes: ["name"] }],
+    });
   }
 
   async createUser(
@@ -33,24 +36,9 @@ class UserService {
     );
 
     return {
-      id: userRecord.user_id,
-      username: userRecord.username,
-      role: roleRecord.name,
+      ...userRecord,
+      role: { name: role },
     };
-  }
-
-  async getRoleByUserId(userId: number) {
-    return await UserModel.findOne({
-      where: {
-        user_id: userId,
-      },
-      include: [
-        {
-          model: RoleModel,
-          attributes: ["name"],
-        },
-      ],
-    });
   }
 }
 

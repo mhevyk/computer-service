@@ -4,6 +4,7 @@ import TokenService from "./token";
 import bcrypt from "bcrypt";
 import { sequelize } from "../database/sequelize";
 import { Role } from "../permissions/roles";
+import UserDto from "../dtos/user";
 
 class AuthService {
   async registration(username: string, password: string, role: Role) {
@@ -28,10 +29,11 @@ class AuthService {
         { transaction }
       );
 
-      const tokens = TokenService.generateTokens(user);
+      const userDto = new UserDto(user);
+      const tokens = TokenService.generateTokens({ ...userDto });
       await TokenService.saveRefreshToken(
         {
-          userId: user.id,
+          userId: userDto.id,
           refreshToken: tokens.refreshToken,
         },
         { transaction }
@@ -41,7 +43,7 @@ class AuthService {
 
       return {
         ...tokens,
-        user,
+        user: userDto,
       };
     } catch (error) {
       await transaction.rollback();
@@ -49,7 +51,28 @@ class AuthService {
     }
   }
 
-  async login(username: string, password: string) {}
+  async login(username: string, password: string) {
+    const user = await UserService.findUserByUsername(username);
+
+    if (user === null) {
+      throw APIError.BadRequest(`Користувач з ім'ям ${username} не знайдений`);
+    }
+
+    const arePasswordEqual = await bcrypt.compare(password, user.password);
+
+    if (!arePasswordEqual) {
+      throw APIError.BadRequest("Неправильний пароль");
+    }
+
+    const userDto = new UserDto(user);
+    const tokens = TokenService.generateTokens({ ...userDto });
+    await TokenService.saveRefreshToken({
+      userId: userDto.id,
+      refreshToken: tokens.refreshToken,
+    });
+
+    return { ...tokens, user: userDto };
+  }
 
   async logout(refreshToken: string) {}
 
