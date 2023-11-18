@@ -1,5 +1,5 @@
 export {};
-import type { Dialect } from "sequelize";
+import { Dialect } from "sequelize";
 import { TimeSpan } from "./common";
 
 declare global {
