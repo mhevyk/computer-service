@@ -1,8 +1,9 @@
 import { Router } from "express";
-import AuthController from "../controllers/auth";
+import AdminController from "../controllers/admin";
 import validateMiddleware from "../middlewares/validate";
 import usernameValidator from "../validators/usernameValidator";
 import passwordValidator from "../validators/passwordValidator";
+import roleValidator from "../validators/roleValidator";
 
 const router = Router();
 
@@ -10,11 +11,9 @@ router.post(
   "/registration",
   usernameValidator,
   passwordValidator,
+  roleValidator,
   validateMiddleware,
-  AuthController.registration
+  AdminController.registrationRole
 );
-router.post("/login", AuthController.login);
-router.post("/logout", AuthController.logout);
-router.get("/refresh", AuthController.refresh);
 
 export default router;

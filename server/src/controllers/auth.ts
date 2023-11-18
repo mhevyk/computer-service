@@ -1,4 +1,4 @@
-import { Response, NextFunction, CookieOptions } from "express";
+import { Response, NextFunction } from "express";
 import {
   AuthCookies,
   LoginBody,
@@ -7,24 +7,23 @@ import {
   RequestWithCookies,
 } from "../types/request";
 import AuthService from "../services/auth";
-import parseTimeSpanToMilliseconds from "../utils/parseTimeSpanToMilliseconds";
-
-const AUTH_COOKIE_NAME = "refreshToken";
-const AUTH_COOKIE_OPTIONS: CookieOptions = {
-  httpOnly: true,
-  maxAge: parseTimeSpanToMilliseconds(process.env.JWT_REFRESH_EXPIRES_IN),
-} as const;
+import { ROLES } from "../permissions/roles";
+import { AUTH_COOKIE_NAME, AUTH_COOKIE_OPTIONS } from "../constants/global";
 
 class AuthController {
   async registration(
-    req: RequestWithBody<RegistrationBody>,
+    req: RequestWithBody<Omit<RegistrationBody, "role">>,
     res: Response,
     next: NextFunction
   ) {
     try {
-      const { username, password, role } = req.body;
+      const { username, password } = req.body;
 
-      const userData = await AuthService.registration(username, password, role);
+      const userData = await AuthService.registration(
+        username,
+        password,
+        ROLES.USER
+      );
       res.cookie(AUTH_COOKIE_NAME, userData.refreshToken, AUTH_COOKIE_OPTIONS);
 
       return res.json(userData);
