@@ -1,5 +1,11 @@
 import jwt from "jsonwebtoken";
 import TokenModel from "../database/models/token.model";
+import { CreateOptions } from "sequelize";
+
+type SaveRefreshToken = {
+  userId: number;
+  refreshToken: string;
+};
 
 class TokenService {
   generateTokens(payload: Record<string, any>) {
@@ -14,11 +20,17 @@ class TokenService {
     return { accessToken, refreshToken };
   }
 
-  async saveRefreshToken(userId: number, refreshToken: string) {
-    return await TokenModel.create({
-      user_id: userId,
-      refresh_token: refreshToken,
-    });
+  async saveRefreshToken(
+    { userId, refreshToken }: SaveRefreshToken,
+    options?: CreateOptions
+  ) {
+    return await TokenModel.create(
+      {
+        user_id: userId,
+        refresh_token: refreshToken,
+      },
+      options
+    );
   }
 }
 
