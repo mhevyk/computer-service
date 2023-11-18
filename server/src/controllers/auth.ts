@@ -21,9 +21,9 @@ class AuthController {
     next: NextFunction
   ) {
     try {
-      const { username, password } = req.body;
+      const { username, password, role = "USER" } = req.body;
 
-      const userData = await AuthService.registration(username, password);
+      const userData = await AuthService.registration(username, password, role);
       res.cookie(AUTH_COOKIE_NAME, userData.refreshToken, AUTH_COOKIE_OPTIONS);
 
       return res.json(userData);

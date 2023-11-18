@@ -5,4 +5,8 @@ export default class APIError extends Error {
     super(message);
     this.status = status;
   }
+
+  static BadRequest(message: string) {
+    return new APIError(message, 400);
+  }
 }
