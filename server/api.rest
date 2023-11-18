@@ -1,0 +1,20 @@
+### Створення звичайного користувача
+
+POST http://localhost:5000/auth/registration
+Content-Type: application/json
+
+{
+    "username": "sergiy",
+    "password": "qwerty",
+}
+
+### створення користувача з певною роллю
+
+POST http://localhost:5000/auth/registration
+Content-Type: application/json
+
+{
+    "username": "sergiy",
+    "password": "qwerty",
+    "role": "ADMIN"
+}
