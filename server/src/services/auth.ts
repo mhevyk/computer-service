@@ -4,13 +4,14 @@ import TokenService from "./token";
 import bcrypt from "bcrypt";
 import { sequelize } from "../database/sequelize";
 import { Role } from "../permissions/roles";
-import UserDto from "../dtos/user";
+import UserDto, { UserLike } from "../dtos/user";
+import { CreateOptions } from "sequelize";
 
 class AuthService {
   async registration(username: string, password: string, role: Role) {
     const candidate = await UserService.findUserByUsername(username);
 
-    if (candidate !== null) {
+    if (candidate) {
       throw APIError.BadRequest(`Користувач з ім'ям ${username} вже існує`);
     }
 
@@ -29,22 +30,10 @@ class AuthService {
         { transaction }
       );
 
-      const userDto = new UserDto(user);
-      const tokens = TokenService.generateTokens({ ...userDto });
-      await TokenService.saveRefreshToken(
-        {
-          userId: userDto.id,
-          refreshToken: tokens.refreshToken,
-        },
-        { transaction }
-      );
-
+      const response = await processUserAndTokens(user, { transaction });
       await transaction.commit();
 
-      return {
-        ...tokens,
-        user: userDto,
-      };
+      return response;
     } catch (error) {
       await transaction.rollback();
       throw error;
@@ -54,7 +43,7 @@ class AuthService {
   async login(username: string, password: string) {
     const user = await UserService.findUserByUsername(username);
 
-    if (user === null) {
+    if (!user) {
       throw APIError.BadRequest(`Користувач з ім'ям ${username} не знайдений`);
     }
 
@@ -64,14 +53,7 @@ class AuthService {
       throw APIError.BadRequest("Неправильний пароль");
     }
 
-    const userDto = new UserDto(user);
-    const tokens = TokenService.generateTokens({ ...userDto });
-    await TokenService.saveRefreshToken({
-      userId: userDto.id,
-      refreshToken: tokens.refreshToken,
-    });
-
-    return { ...tokens, user: userDto };
+    return await processUserAndTokens(user);
   }
 
   async logout(refreshToken: string) {
@@ -83,7 +65,50 @@ class AuthService {
     return token;
   }
 
-  async refresh(refreshToken: string) {}
+  async refresh(refreshToken: string) {
+    if (!refreshToken) {
+      throw APIError.Unauthourized();
+    }
+
+    const userData = TokenService.validateRefreshToken(refreshToken);
+
+    if (!userData) {
+      throw APIError.Unauthourized();
+    }
+
+    const tokenFromDatabase = await TokenService.findByRefreshToken(
+      refreshToken
+    );
+
+    if (!tokenFromDatabase) {
+      throw APIError.Unauthourized();
+    }
+
+    const user = await UserService.findUserById(userData.id);
+
+    if (!user) {
+      throw APIError.Unauthourized();
+    }
+
+    return await processUserAndTokens(user);
+  }
 }
 
 export default new AuthService();
+
+async function processUserAndTokens(
+  userData: UserLike,
+  options?: CreateOptions
+) {
+  const userDto = new UserDto(userData);
+  const tokens = TokenService.generateTokens({ ...userDto });
+  await TokenService.saveRefreshToken(
+    {
+      userId: userDto.id,
+      refreshToken: tokens.refreshToken,
+    },
+    options
+  );
+
+  return { ...tokens, user: userDto };
+}

@@ -5,6 +5,13 @@ import APIError from "../exceptions/APIError";
 import { RegistrationBody } from "../types/request";
 
 class UserService {
+  async findUserById(id: number) {
+    return await UserModel.findOne({
+      where: { user_id: id },
+      include: [{ model: RoleModel, attributes: ["name"] }],
+    });
+  }
+
   async findUserByUsername(username: string) {
     return await UserModel.findOne({
       where: { username },
