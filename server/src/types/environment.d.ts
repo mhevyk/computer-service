@@ -11,6 +11,10 @@ declare global {
       readonly DB_DIALECT: Dialect;
       readonly DB_NAME: string;
       readonly DB_PORT: number;
+      readonly JWT_ACCESS_SECRET: string;
+      readonly JWT_ACCESS_EXPIRES_IN: string;
+      readonly JWT_REFRESH_SECRET: string;
+      readonly JWT_REFRESH_EXPIRES_IN: string;
     }
   }
 }
