@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import TokenModel from "../database/models/token.model";
 
 class TokenService {
   generateTokens(payload: Record<string, any>) {
@@ -14,7 +15,10 @@ class TokenService {
   }
 
   async saveRefreshToken(userId: number, refreshToken: string) {
-    return null;
+    return await TokenModel.create({
+      user_id: userId,
+      refresh_token: refreshToken,
+    });
   }
 }
 
