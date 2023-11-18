@@ -1,8 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import { sequelize } from "./database/sequelize";
-import RoleModel from "./database/models/role.model";
-import UserModel from "./database/models/user.model";
+import UserService from "./services/user";
 
 const PORT = process.env.PORT || 5000;
 
@@ -18,14 +17,7 @@ function handleListen() {
 
 async function start() {
   await sequelize.authenticate();
-  const response = await UserModel.findOne({
-    include: [
-      {
-        model: RoleModel,
-        attributes: ["name"],
-      },
-    ],
-  });
+  const response = await UserService.getRoleByUserId(1);
 
   if (response !== null) {
     console.log(response);
