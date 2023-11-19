@@ -16,6 +16,7 @@ declare global {
       readonly JWT_ACCESS_EXPIRES_IN: TimeSpan;
       readonly JWT_REFRESH_SECRET: string;
       readonly JWT_REFRESH_EXPIRES_IN: TimeSpan;
+      readonly CLIENT_BASE_URL: string;
     }
   }
 }

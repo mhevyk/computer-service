@@ -5,12 +5,14 @@ import { sequelize } from "./database/sequelize";
 import authRoutes from "./routes/auth";
 import adminPanelRoutes from "./routes/admin";
 import errorMiddleware from "./middlewares/error";
+import corsMiddleware from "./middlewares/cors";
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 
 app.use(express.json());
+app.use(corsMiddleware);
 app.use(cookieParser());
 app.use("/auth", authRoutes);
 app.use("/admin-panel", adminPanelRoutes);
