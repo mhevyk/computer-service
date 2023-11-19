@@ -1,5 +1,5 @@
 import { FormEvent } from "react";
-import { useLogin } from "../auth/useLogin";
+import { useLogin } from "../../auth/useLogin";
 
 export function LoginPage() {
   const login = useLogin();

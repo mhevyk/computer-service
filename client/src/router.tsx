@@ -2,8 +2,8 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import { RootLayout } from "./layouts/RootLayout";
 import { ErrorPage } from "./pages/ErrorPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
-import { LoginPage } from "./pages/LoginPage";
-import { RegistrationPage } from "./pages/RegistrationPage";
+import { LoginPage } from "./pages/Auth/LoginPage";
+import { RegistrationPage } from "./pages/Auth/RegistrationPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { DashboardPage } from "./pages/DashboardPage";
 
