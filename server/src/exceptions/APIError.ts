@@ -21,4 +21,8 @@ export default class APIError extends Error {
   static Unauthourized() {
     return new APIError("Користувач не авторизований", 401);
   }
+
+  static NotAllowed() {
+    return new APIError("Нема доступу", 403);
+  }
 }
