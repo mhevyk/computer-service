@@ -42,10 +42,9 @@ class UserService {
       }
     );
 
-    return {
-      ...userRecord,
-      role: { name: role },
-    };
+    userRecord.dataValues.role = { name: role };
+
+    return userRecord;
   }
 }
 

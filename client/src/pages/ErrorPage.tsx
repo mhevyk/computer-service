@@ -5,8 +5,6 @@ export function ErrorPage() {
 
   const isRouteError = isRouteErrorResponse(error);
 
-  console.log(isRouteError);
-
   return (
     <>
       <h1>Error - Something went wrong</h1>

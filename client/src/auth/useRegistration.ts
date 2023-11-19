@@ -9,7 +9,7 @@ export function useRegistration() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { mutate } = useMutation<
+  const { mutateAsync } = useMutation<
     AxiosResponse<AuthResponse>,
     AxiosError,
     RegisrationCredentials
@@ -19,7 +19,7 @@ export function useRegistration() {
     },
     onSuccess: response => {
       queryClient.setQueryData([QUERY_KEY.user], response.data);
-      navigate("/");
+      navigate("/dashboard");
     },
     onError: error => {
       // TODO: handle error with toast or using aother method
@@ -27,5 +27,5 @@ export function useRegistration() {
     },
   });
 
-  return mutate;
+  return mutateAsync;
 }

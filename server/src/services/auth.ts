@@ -4,8 +4,9 @@ import TokenService from "./token";
 import bcrypt from "bcrypt";
 import { sequelize } from "../database/sequelize";
 import { Role } from "../permissions/roles";
-import UserDto, { UserLike } from "../dtos/user";
+import UserDto from "../dtos/user";
 import { CreateOptions } from "sequelize";
+import UserModel from "../database/models/user.model";
 
 class AuthService {
   async registration(username: string, password: string, role: Role) {
@@ -97,7 +98,7 @@ class AuthService {
 export default new AuthService();
 
 async function processUserAndTokens(
-  userData: UserLike,
+  userData: UserModel,
   options?: CreateOptions
 ) {
   const userDto = new UserDto(userData);

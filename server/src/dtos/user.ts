@@ -1,17 +1,13 @@
-export type UserLike = {
-  user_id: number;
-  username: string;
-  role: { name: string };
-};
+import UserModel from "../database/models/user.model";
 
 export default class UserDto {
   public readonly id: number;
   public readonly username: string;
   public readonly role: string;
 
-  constructor(user: UserLike) {
-    this.id = user.user_id;
-    this.username = user.username;
-    this.role = user.role.name;
+  constructor(user: UserModel) {
+    this.id = user.dataValues.user_id;
+    this.username = user.dataValues.username;
+    this.role = user.dataValues.role.name;
   }
 }
