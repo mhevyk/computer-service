@@ -101,16 +101,14 @@ async function processUserAndTokens(
   options?: CreateOptions
 ) {
   const userDto = new UserDto(userData);
-  const { accessToken, refreshToken } = TokenService.generateTokens({
-    ...userDto,
-  });
+  const tokens = TokenService.generateTokens({ ...userDto });
   await TokenService.saveRefreshToken(
     {
       userId: userDto.id,
-      refreshToken: refreshToken,
+      refreshToken: tokens.refreshToken,
     },
     options
   );
 
-  return { accessToken, user: userDto };
+  return { ...tokens, user: userDto };
 }
