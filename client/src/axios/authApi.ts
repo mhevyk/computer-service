@@ -1,6 +1,6 @@
 import axios from "axios";
-import AuthService from "../services/AuthService";
-import UserStoreService from "../services/UserStoreService";
+import AuthService from "../features/authentication/services/AuthService";
+import UserStoreService from "../features/authentication/services/UserStoreService";
 import { BASE_URL } from "./common";
 
 export const $authApi = axios.create({

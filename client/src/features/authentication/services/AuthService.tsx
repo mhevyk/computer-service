@@ -1,6 +1,6 @@
 import { AuthResponse } from "../types/auth";
-import { $publicApi } from "../axios/publicApi";
-import { $authApi } from "../axios/authApi";
+import { $publicApi } from "../../../axios/publicApi";
+import { $authApi } from "../../../axios/authApi";
 
 export default class AuthService {
   static login(username: string, password: string) {

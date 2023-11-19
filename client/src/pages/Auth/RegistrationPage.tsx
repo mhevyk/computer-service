@@ -1,5 +1,5 @@
 import { FormEvent, useRef } from "react";
-import { useRegistration } from "../../auth/useRegistration";
+import { useRegistration } from "../../features/authentication/hooks/useRegistration";
 
 export function RegistrationPage() {
   const registration = useRegistration();

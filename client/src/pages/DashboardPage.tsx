@@ -1,5 +1,5 @@
-import { useLogout } from "../auth/useLogout";
-import { useUser } from "../auth/useUser";
+import { useLogout } from "../features/authentication/hooks/useLogout";
+import { useUser } from "../features/authentication/hooks/useUser";
 
 export function DashboardPage() {
   const user = useUser();

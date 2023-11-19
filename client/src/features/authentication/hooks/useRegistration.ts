@@ -1,7 +1,7 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/AuthService";
-import { QUERY_KEY } from "../constants/queryKeys";
+import { QUERY_KEY } from "../../../constants/queryKeys";
 import { AuthResponse, RegisrationCredentials } from "../types/auth";
 import { AxiosError, AxiosResponse } from "axios";
 
