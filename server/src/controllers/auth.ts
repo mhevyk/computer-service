@@ -26,6 +26,8 @@ class AuthController {
       );
       res.cookie(AUTH_COOKIE_KEY, userData.refreshToken, AUTH_COOKIE_OPTIONS);
 
+      // TODO: exclude refreshToken from response
+
       return res.json(userData);
     } catch (error) {
       next(error);
