@@ -19,7 +19,7 @@ export function useLogin() {
     },
     onSuccess: response => {
       queryClient.setQueryData([QUERY_KEY.user], response.data);
-      navigate("/dashboard");
+      navigate("/app");
     },
     onError: error => {
       // TODO: handle error with toast or using aother method
