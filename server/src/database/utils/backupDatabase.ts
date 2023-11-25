@@ -1,6 +1,8 @@
-import { exec } from "child_process";
 import path from "path";
 import fs from "fs";
+import removeDirectory from "../../utils/removeDirectory";
+import executeCommand from "../../utils/executeCommand";
+import compress from "../../utils/compress";
 
 function composeDateFilenamePart() {
   const date = new Date();
@@ -22,32 +24,33 @@ function composeBackupFilename(databaseName: string) {
 
 const CURRENT_DIRECTORY = path.resolve(__dirname);
 
-export function backupDatabase() {
-  const backupFileDirectory = path.resolve(CURRENT_DIRECTORY, "..", "backups");
-  const { DB_NAME, DB_USERNAME, DB_PASSWORD } = process.env;
-  const backupFileName = composeBackupFilename(DB_NAME);
-  const backupFilePath = path.resolve(backupFileDirectory, backupFileName);
+export async function backupDatabase() {
+  try {
+    const backupFileDirectory = path.resolve(
+      CURRENT_DIRECTORY,
+      "..",
+      "backups"
+    );
+    const { DB_NAME, DB_USERNAME, DB_PASSWORD } = process.env;
+    const backupFilename = composeBackupFilename(DB_NAME);
+    const backupFilePath = path.resolve(backupFileDirectory, backupFilename);
 
-  if (fs.existsSync(backupFilePath)) {
-    return console.error(`Backup file ${backupFileName} is already created!`);
-  }
-
-  if (!fs.existsSync(backupFileDirectory)) {
-    fs.mkdirSync(backupFileDirectory);
-  }
-
-  const command = `SET PGPASSWORD=${DB_PASSWORD}&& pg_dump -U "${DB_USERNAME}" -F d -f "${backupFilePath}" "${DB_NAME}"`;
-
-  // TODO: implement zipping resulting file
-  // TODO: implment scheduling backup (with cron package)
-
-  exec(command, { cwd: CURRENT_DIRECTORY }, (error, stdout, stderr) => {
-    if (error) {
-      return console.error(`exec error: ${error}`);
+    if (fs.existsSync(`${backupFilePath}.zip`)) {
+      return console.error(
+        `Backup file ${backupFilename}.zip is already created!`
+      );
     }
-    if (stderr) {
-      return console.error(`stderr: ${stderr}`);
+
+    if (!fs.existsSync(backupFileDirectory)) {
+      fs.mkdirSync(backupFileDirectory);
     }
-    console.log(`Created a backup of ${DB_NAME} successfully: ${stdout}`);
-  });
+
+    const command = `SET PGPASSWORD=${DB_PASSWORD}&& pg_dump -U "${DB_USERNAME}" -F d -f "${backupFilePath}" "${DB_NAME}"`;
+
+    await executeCommand(command, { cwd: CURRENT_DIRECTORY });
+    await compress(backupFilePath, `${backupFilePath}.zip`);
+    await removeDirectory(backupFilePath);
+  } catch (error) {
+    console.log(error);
+  }
 }
