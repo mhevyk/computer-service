@@ -45,11 +45,14 @@ export async function backupDatabase() {
       fs.mkdirSync(backupFileDirectory);
     }
 
-    const command = `SET PGPASSWORD=${DB_PASSWORD}&& pg_dump -U "${DB_USERNAME}" -F d -f "${backupFilePath}" "${DB_NAME}"`;
+    const command = `SET PGPASSWORD=${DB_PASSWORD}&& pg_dump --username="${DB_USERNAME}" --format=directory --file="${backupFilePath}" "${DB_NAME}"`;
 
     await executeCommand(command, { cwd: CURRENT_DIRECTORY });
     await compress(backupFilePath, `${backupFilePath}.zip`);
     await removeDirectory(backupFilePath);
+    console.log(
+      `Database backup was successfully created and loaded in file ${backupFilename}`
+    );
   } catch (error) {
     console.log(error);
   }
