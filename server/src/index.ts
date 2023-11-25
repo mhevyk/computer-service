@@ -6,6 +6,7 @@ import authRoutes from "./routes/auth";
 import adminPanelRoutes from "./routes/admin";
 import errorMiddleware from "./middlewares/error";
 import corsMiddleware from "./middlewares/cors";
+import backupDatabaseJob from "./jobs/backupDatabase";
 
 const PORT = process.env.PORT || 5000;
 
@@ -21,6 +22,8 @@ app.use(errorMiddleware);
 function handleListen() {
   console.log(`Server started on http://localhost:${PORT}/`);
 }
+
+backupDatabaseJob.start();
 
 async function start() {
   await sequelize.authenticate();

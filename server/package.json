@@ -7,6 +7,10 @@
     "preserve": "npm run build",
     "serve": "concurrently \"npx tsc -w\"  \"nodemon dist/index.js\""
   },
+  "exports": "./index.js",
+  "engines": {
+    "node": ">=16"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,6 +21,7 @@
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^18.18.9",
+    "chalk": "^5.3.0",
     "concurrently": "^7.4.0",
     "nodemon": "^2.0.19",
     "rimraf": "^3.0.2",
@@ -26,10 +31,12 @@
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "cron": "^3.1.6",
     "dotenv": "^16.3.1",
     "express": "^4.18.1",
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.2",
+    "jszip": "^3.10.1",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.35.0",
