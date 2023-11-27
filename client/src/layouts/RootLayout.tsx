@@ -10,7 +10,7 @@ export function RootLayout() {
       <Navbar />
       <ScrollRestoration />
       {isLoading && <div className="loading-spinner" />}
-      <div className={`container ${isLoading ? "loading" : ""}`}>
+      <div className={`container px-2 ${isLoading ? "loading" : ""}`}>
         <Outlet />
       </div>
     </>
