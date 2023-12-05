@@ -1,51 +1,71 @@
-import { FormEvent, useRef } from "react";
+import { FormEvent } from "react";
 import { useRegistration } from "../../features/authentication/hooks/useRegistration";
+import { Link } from "react-router-dom";
+import { Input } from "../../components/ui/Input";
+import { Button } from "../../components/ui/Button";
+import { useForm } from "../../features/authentication/hooks/useForm";
+import { useSnackbar } from "notistack";
+
+const initialData = {
+  username: "",
+  password: "",
+  repeatedPassword: "",
+};
 
 export function RegistrationPage() {
-  const registration = useRegistration();
-  const usernameInputRef = useRef<HTMLInputElement | null>(null);
-  const passwordInputRef = useRef<HTMLInputElement | null>(null);
-  const repeatPasswordInputRef = useRef<HTMLInputElement | null>(null);
+  const [credentials, handleChange] = useForm({ initialData });
+  const [registration, { isPending }] = useRegistration();
+  const { enqueueSnackbar } = useSnackbar();
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    const username = usernameInputRef.current?.value ?? "";
-    const password = passwordInputRef.current?.value ?? "";
-    const repeatedPassword = repeatPasswordInputRef.current?.value ?? "";
-
-    if (
-      !username ||
-      !password ||
-      !repeatedPassword ||
-      password !== repeatedPassword
-    ) {
-      return;
+    if (credentials.password !== credentials.repeatedPassword) {
+      return enqueueSnackbar("Паролі не збігаються", { variant: "error" });
     }
-
-    const credentials = {
-      username,
-      password,
-    };
 
     await registration(credentials);
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" placeholder="username" ref={usernameInputRef} />
-      <input
-        type="password"
-        placeholder="password"
-        name="password"
-        ref={passwordInputRef}
-      />
-      <input
-        type="password"
-        placeholder="repeat password"
-        ref={repeatPasswordInputRef}
-      />
-      <button type="submit">Registration</button>
-    </form>
+    <div className="relative flex flex-col justify-center items-center h-screen overflow-hidden">
+      <div className="w-full p-6 mx-auto bg-white rounded-md shadow-md ring-1 ring-gray-800/50 md:max-w-lg">
+        <h1 className="text-3xl font-semibold text-center text-gray-700 uppercase">
+          Computer service
+        </h1>
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          <Input
+            label="Ім'я користувача"
+            placeholder="Введіть ім'я користувача..."
+            value={credentials.username}
+            onChange={handleChange("username")}
+          />
+          <Input
+            label="Пароль"
+            type="password"
+            placeholder="Введіть пароль..."
+            value={credentials.password}
+            onChange={handleChange("password")}
+          />
+          <Input
+            label="Повторіть пароль"
+            type="password"
+            placeholder="Введіть пароль ще раз..."
+            value={credentials.repeatedPassword}
+            onChange={handleChange("repeatedPassword")}
+          />
+          <div className="divider"></div>
+          <Button variant="accent" type="submit" isLoading={isPending}>
+            Зареєструватися
+          </Button>
+        </form>
+      </div>
+      <div className="mx-auto mt-5">
+        У вас є обліковий запис?{" "}
+        <Link to="/auth/login" className="text-accent">
+          Ввійдіть
+        </Link>
+      </div>
+    </div>
   );
 }

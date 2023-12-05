@@ -4,14 +4,18 @@ import AuthService from "../services/AuthService";
 import { QUERY_KEY } from "../../../constants/queryKeys";
 import { AuthResponse, RegisrationCredentials } from "../types/auth";
 import { AxiosError, AxiosResponse } from "axios";
+import { APIError } from "../../../types/common";
+import { useSnackbar } from "notistack";
+import { extractErrorMessage } from "../../../utils/extractErrorMessage";
 
 export function useRegistration() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
-  const { mutateAsync } = useMutation<
+  const { mutateAsync, ...rest } = useMutation<
     AxiosResponse<AuthResponse>,
-    AxiosError,
+    AxiosError<APIError>,
     RegisrationCredentials
   >({
     mutationFn: ({ username, password }) => {
@@ -22,10 +26,9 @@ export function useRegistration() {
       navigate("/app");
     },
     onError: error => {
-      // TODO: handle error with toast or using aother method
-      console.log("Registration error", error);
+      enqueueSnackbar(extractErrorMessage(error), { variant: "error" });
     },
   });
 
-  return mutateAsync;
+  return [mutateAsync, rest] as const;
 }

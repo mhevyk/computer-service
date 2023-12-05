@@ -4,14 +4,18 @@ import AuthService from "../services/AuthService";
 import { QUERY_KEY } from "../../../constants/queryKeys";
 import { AuthResponse, LoginCredentials } from "../types/auth";
 import { AxiosError, AxiosResponse } from "axios";
+import { useSnackbar } from "notistack";
+import { APIError } from "../../../types/common";
+import { extractErrorMessage } from "../../../utils/extractErrorMessage";
 
 export function useLogin() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
-  const { mutateAsync } = useMutation<
+  const { mutateAsync, ...rest } = useMutation<
     AxiosResponse<AuthResponse>,
-    AxiosError,
+    AxiosError<APIError>,
     LoginCredentials
   >({
     mutationFn: ({ username, password }) => {
@@ -22,10 +26,9 @@ export function useLogin() {
       navigate("/app");
     },
     onError: error => {
-      // TODO: handle error with toast or using aother method
-      console.log("Login error", error);
+      enqueueSnackbar(extractErrorMessage(error), { variant: "error" });
     },
   });
 
-  return mutateAsync;
+  return [mutateAsync, rest] as const;
 }

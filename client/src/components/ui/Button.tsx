@@ -8,6 +8,7 @@ type ButtonProps = PropsWithChildren &
     variant?: Variant;
     size?: Size;
     icon?: ReactNode;
+    isLoading?: boolean;
   };
 
 export function Button({
@@ -16,6 +17,8 @@ export function Button({
   size = "md",
   icon,
   className,
+  isLoading = false,
+  disabled,
   ...props
 }: ButtonProps) {
   const classes = cc(
@@ -26,9 +29,17 @@ export function Button({
   );
 
   return (
-    <button className={twMerge(classes, className)} {...props}>
+    <button
+      className={twMerge(classes, className)}
+      disabled={isLoading || disabled}
+      {...props}
+    >
       {children}
-      {icon}
+      {isLoading ? (
+        <span className="loading loading-spinner loading-xs"></span>
+      ) : (
+        icon
+      )}
     </button>
   );
 }
