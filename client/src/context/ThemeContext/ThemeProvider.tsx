@@ -28,7 +28,7 @@ export function ThemeProvider({ children }: PropsWithChildren) {
   });
 
   useEffect(() => {
-    document.querySelector("html")!.setAttribute("data-theme", theme);
+    document.documentElement!.setAttribute("data-theme", theme);
   }, [theme]);
 
   useEffect(() => {

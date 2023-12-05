@@ -7,15 +7,14 @@ export function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
 
   function handleSwitchToggle(event: ChangeEvent<HTMLInputElement>) {
-    const themeIndex = Number(!event.target.checked);
-    setTheme(THEMES[themeIndex]);
+    setTheme(THEMES[event.target.checked ? "dark" : "light"]);
   }
 
   return (
     <label className="flex cursor-pointer gap-2">
       <Icon icon="ph:sun" />
       <input
-        checked={theme === THEMES[0]}
+        checked={theme === THEMES.dark}
         onChange={handleSwitchToggle}
         type="checkbox"
         value="synthwave"
