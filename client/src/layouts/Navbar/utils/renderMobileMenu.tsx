@@ -1,6 +1,6 @@
+import { Icon } from "@iconify/react";
 import { Dropdown } from "../../../components/ui/Dropdown";
 import { NavLink } from "../../../components/ui/NavLink";
-import { BurgerMenuIcon } from "../components/BurgerMenuIcon";
 import { MenuItem, menu } from "../components/menu";
 import { concatPaths } from "./concatPaths";
 
@@ -31,7 +31,7 @@ export function renderMobileMenu() {
       items={menu}
       renderItem={item => renderItem(item)}
       hideCaretIcon
-      label={<BurgerMenuIcon />}
+      label={<Icon icon="iconamoon:menu-burger-horizontal-bold" />}
       size="md"
     />
   );

@@ -15,7 +15,7 @@ export function Navbar() {
       </div>
       <div className="navbar-center hidden lg:flex">{renderCenterMenu()}</div>
       <div className="navbar-end">
-        <div className="flex-none">
+        <div className="flex items-center">
           <CartIcon />
           <ProfileDropDown />
         </div>
