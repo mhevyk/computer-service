@@ -6,7 +6,7 @@ import { renderMobileMenu } from "./utils/renderMobileMenu";
 
 export function Navbar() {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 sticky top-0 z-50">
       <div className="navbar-start">
         <div className="lg:hidden">{renderMobileMenu()}</div>
         <Link className="btn btn-ghost text-xl uppercase" to="">
