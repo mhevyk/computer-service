@@ -1,19 +1,23 @@
 import { RouteObject } from "react-router-dom";
-import { DashboardPage } from "../pages/DashboardPage";
 import { NotFoundPage } from "../pages/NotFoundPage";
-import { ComputersPage } from "../pages/ComputersPage";
+import { ChooseComputerType } from "../pages/ChooseComputerType";
+import { FactoryComputers } from "../pages/FactoryComputers";
 
 export const appRoutes: RouteObject[] = [
   {
     index: true,
-    element: <DashboardPage />,
+    element: <ChooseComputerType />,
   },
   {
     path: "computers",
     children: [
       {
         index: true,
-        element: <ComputersPage />,
+        element: <ChooseComputerType />,
+      },
+      {
+        path: "factory",
+        element: <FactoryComputers />,
       },
     ],
   },
