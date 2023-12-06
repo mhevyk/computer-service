@@ -8,3 +8,11 @@ export type APIError = {
   message: string;
   errors?: string[];
 };
+
+export type Computer = {
+  computer_id: number;
+  name: string;
+  brand: string;
+  is_custom: boolean;
+  release_date: string;
+};
