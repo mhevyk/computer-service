@@ -1,4 +1,4 @@
-import { RouteObject } from "react-router-dom";
+import { Navigate, RouteObject } from "react-router-dom";
 import { NotFoundPage } from "../pages/NotFoundPage";
 import { ChooseComputerType } from "../pages/ChooseComputerType";
 import { FactoryComputers } from "../pages/FactoryComputers";
@@ -6,7 +6,7 @@ import { FactoryComputers } from "../pages/FactoryComputers";
 export const appRoutes: RouteObject[] = [
   {
     index: true,
-    element: <ChooseComputerType />,
+    element: <Navigate to="computers" />,
   },
   {
     path: "computers",
