@@ -11,4 +11,7 @@ export const sequelize = new Sequelize({
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
   models: [MODELS_PATH],
+  define: {
+    timestamps: false,
+  },
 });

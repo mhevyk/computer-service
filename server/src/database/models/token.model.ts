@@ -11,10 +11,7 @@ import {
 } from "sequelize-typescript";
 import UserModel from "./user.model";
 
-@Table({
-  tableName: "token",
-  timestamps: false,
-})
+@Table({ tableName: "token" })
 export default class TokenModel extends Model {
   @PrimaryKey
   @AutoIncrement

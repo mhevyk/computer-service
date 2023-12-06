@@ -37,9 +37,7 @@ class UserService {
         password,
         role_id: roleRecord.role_id,
       },
-      {
-        ...options,
-      }
+      options
     );
 
     userRecord.dataValues.role = { name: role };

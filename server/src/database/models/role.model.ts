@@ -8,10 +8,7 @@ import {
   Unique,
 } from "sequelize-typescript";
 
-@Table({
-  tableName: "role",
-  timestamps: false,
-})
+@Table({ tableName: "role" })
 export default class RoleModel extends Model {
   @PrimaryKey
   @AutoIncrement

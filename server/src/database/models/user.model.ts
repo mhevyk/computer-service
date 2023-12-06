@@ -13,10 +13,7 @@ import {
 } from "sequelize-typescript";
 import RoleModel from "./role.model";
 
-@Table({
-  tableName: "user",
-  timestamps: false,
-})
+@Table({ tableName: "user" })
 export default class UserModel extends Model {
   @PrimaryKey
   @AutoIncrement
