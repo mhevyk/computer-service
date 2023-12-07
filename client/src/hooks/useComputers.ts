@@ -12,5 +12,7 @@ export function useComputers() {
     },
   });
 
+  console.log(data);
+
   return data;
 }

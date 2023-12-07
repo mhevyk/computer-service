@@ -1,9 +1,9 @@
 import { Icon } from "@iconify/react";
 import { useCart } from "../../../context/CartContext/useCart";
-import { Button } from "../../../components/ui/Button";
+import { CartComputerCounter } from "../../../components/CartComputerCounter";
 
 export function CartIcon() {
-  const { cart, addToCart, removeFromCartById } = useCart();
+  const { cart } = useCart();
 
   // TODO: change UI
 
@@ -21,19 +21,7 @@ export function CartIcon() {
       >
         <div className="card-body">
           {cart.map(cartItem => (
-            <div key={cartItem.computer.computer_id}>
-              <Button
-                onClick={() =>
-                  removeFromCartById(cartItem.computer.computer_id)
-                }
-              >
-                -
-              </Button>
-              <div>
-                {cartItem.computer.name} {cartItem.count}
-              </div>
-              <Button onClick={() => addToCart(cartItem.computer)}>-</Button>
-            </div>
+            <CartComputerCounter computer={cartItem.computer} />
           ))}
           <span className="font-bold text-lg">8 Items</span>
           <span className="text-info">Subtotal: $999</span>
