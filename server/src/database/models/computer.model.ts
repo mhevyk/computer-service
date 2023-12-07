@@ -7,7 +7,10 @@ import {
   AutoIncrement,
   Unique,
   AllowNull,
+  HasMany,
+  Default,
 } from "sequelize-typescript";
+import ComponentModel from "./component.model";
 
 @Table({ tableName: "computer" })
 export default class ComputerModel extends Model {
@@ -29,4 +32,16 @@ export default class ComputerModel extends Model {
 
   @Column(DataType.DATEONLY)
   release_date: Date;
+
+  @HasMany(() => ComponentModel)
+  components: ComponentModel[];
+
+  @Default(0)
+  @Column(DataType.VIRTUAL)
+  get price() {
+    return this.components.reduce(
+      (sum, component) => sum + (component.price_per_unit || 0),
+      0
+    );
+  }
 }
