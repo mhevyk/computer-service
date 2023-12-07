@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "./context/ThemeContext/ThemeProvider";
 import { SnackbarProvider } from "notistack";
 import { ErrorSnackbar } from "./components/Snackbar";
+import { CartProvider } from "./context/CartContext/CartProvider";
 
 const queryClient = new QueryClient();
 
@@ -19,7 +20,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             error: ErrorSnackbar,
           }}
         >
-          <RouterProvider router={router} />
+          <CartProvider>
+            <RouterProvider router={router} />
+          </CartProvider>
         </SnackbarProvider>
       </ThemeProvider>
     </QueryClientProvider>
