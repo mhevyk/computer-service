@@ -25,4 +25,8 @@ export default class APIError extends Error {
   static NotAllowed() {
     return new APIError("Нема доступу", 403);
   }
+
+  static NotFound(message: string) {
+    return new APIError(message, 404);
+  }
 }
