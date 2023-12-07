@@ -39,3 +39,10 @@ POST http://localhost:5000/auth/logout
 
 GET http://localhost:5000/auth/refresh
 HttpOnlyCookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsInVzZXJuYW1lIjoiYWRtaW41Iiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzAwMzI0MDQ0LCJleHAiOjE3MDI5MTYwNDR9.dE0Ox4ao4mG3Ze2bdCNq8DLhUrVFWI5-81feDbYbVJw
+
+###
+
+GET http://localhost:5000/computers
+
+###
+GET http://localhost:5000/computers/100
