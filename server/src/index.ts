@@ -29,6 +29,7 @@ function handleListen() {
 
 async function start() {
   await sequelize.authenticate();
+  await sequelize.sync();
   app.listen(PORT, handleListen);
 }
 
