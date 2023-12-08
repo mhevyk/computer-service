@@ -8,6 +8,7 @@ import {
   ForeignKey,
   AllowNull,
   Default,
+  BelongsTo,
 } from "sequelize-typescript";
 import ComputerModel from "./computer.model";
 import UserModel from "./user.model";
@@ -42,4 +43,10 @@ export default class OrderModel extends Model {
   @Default(ORDER_STATUS.ACCEPTED)
   @Column(DataType.ENUM(...Object.keys(ORDER_STATUS)))
   status: OrderStatus;
+
+  @BelongsTo(() => ComputerModel, "computer_id")
+  computer: ComputerModel;
+
+  @BelongsTo(() => UserModel, "user_id")
+  user: UserModel;
 }

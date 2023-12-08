@@ -51,8 +51,8 @@ GET http://localhost:5000/computers/100
 
 POST http://localhost:5000/order
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzAyMDU1MTE2LCJleHAiOjE3MDIwNTY5MTZ9.cA_IElRAxsUb2DQGmTGKJ_oVyQ1idEad0ifMaDC0w_Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzAyMDYwMzc4LCJleHAiOjE3MDIwNjIxNzh9.fqZD33kQPNmxbnUyfDz6OArzPRKOjU29DPSM3jxM-aY
 
 {
-    "computerIds": [1, 2, 3]
+    "computerIds": [5, 2, 3]
 }

@@ -19,4 +19,5 @@ export const sequelize = new Sequelize({
     useUTC: false,
     timezone: "+00:00",
   },
+  logging: false,
 });
