@@ -60,7 +60,7 @@ function cartReducer(state: State, action: Action): State {
 }
 
 type CartContextType = {
-  cart: CardRecord[];
+  cart: CartRecord[];
   addToCart: (computer: Computer) => void;
   removeFromCartById: (computer_id: number) => void;
   clearCart: () => void;
