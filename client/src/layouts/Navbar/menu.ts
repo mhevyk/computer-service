@@ -21,17 +21,7 @@ export const menu: MenuItem[] = [
     ],
   },
   {
-    label: "Item 2",
-    path: "item2",
-  },
-  {
-    label: "Item 3",
-    path: "item3",
-    children: [
-      {
-        label: "label 3",
-        path: "path",
-      },
-    ],
+    label: "Замовлення",
+    path: "orders",
   },
 ];

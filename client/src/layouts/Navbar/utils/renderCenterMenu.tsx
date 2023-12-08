@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Button } from "@components/ui/Button";
 import { Dropdown } from "@components/ui/Dropdown";
 import { NavLink } from "@components/ui/NavLink";
-import { MenuItem, menu as rootMenu } from "../components/menu";
+import { MenuItem, menu as rootMenu } from "../menu";
 import { concatPaths } from "./concatPaths";
 
 function renderMenuItems(item: MenuItem) {

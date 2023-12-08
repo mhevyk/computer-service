@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import { Dropdown } from "@components/ui/Dropdown";
 import { NavLink } from "@components/ui/NavLink";
-import { MenuItem, menu } from "../components/menu";
+import { MenuItem, menu } from "../menu";
 import { concatPaths } from "./concatPaths";
 
 function renderItem(item: MenuItem) {

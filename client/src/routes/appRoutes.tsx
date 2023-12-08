@@ -4,6 +4,7 @@ import { CartPage } from "@pages/CartPage";
 import { ChooseComputerTypePage } from "@pages/Computers/ChooseComputerTypePage";
 import { FactoryComputersPage } from "@pages/Computers/FactoryComputersPage";
 import { ComputerDetailsPage } from "@pages/Computers/ComputerDetailsPage";
+import { OrdersPage } from "@pages/OrdersPage";
 
 export const appRoutes: RouteObject[] = [
   {
@@ -27,5 +28,6 @@ export const appRoutes: RouteObject[] = [
     ],
   },
   { path: "cart", element: <CartPage /> },
+  { path: "orders", element: <OrdersPage /> },
   { path: "*", element: <NotFoundPage /> },
 ];
