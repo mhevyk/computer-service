@@ -1,7 +1,7 @@
-import { useComputers } from "../../hooks/useComputers";
+import { useComputers } from "../../../features/computers/hooks/useComputers";
 import { Computer } from "./components/Computer";
 
-export function FactoryComputers() {
+export function FactoryComputersPage() {
   const computers = useComputers();
 
   return (

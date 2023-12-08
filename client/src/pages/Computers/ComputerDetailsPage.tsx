@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
-import { useComputer } from "../../../hooks/useComputer";
-import { formatDate } from "../../../utils/formatDate";
-import { ComputerComponents } from "./ComputerComponents";
-import { Button } from "../../../components/ui/Button";
-import { useCart } from "../../../context/CartContext/useCart";
+import { ComputerComponents } from "./FactoryComputersPage/components/ComputerComponents";
+import { useCart } from "../../context/CartContext/useCart";
+import { useComputer } from "../../features/computers/hooks/useComputer";
+import { formatDate } from "../../utils/formatDate";
+import { Button } from "../../components/ui/Button";
 
-export function ComputerDetails() {
+export function ComputerDetailsPage() {
   const { computerId } = useParams();
   const { addToCart } = useCart();
 

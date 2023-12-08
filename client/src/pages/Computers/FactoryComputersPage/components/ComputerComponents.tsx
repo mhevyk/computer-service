@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Component } from "../../../types/common";
 import { ReactNode } from "react";
+import { Component } from "../../../../features/computers/types";
 
 type ComponentTypeDetails = {
   name: string;

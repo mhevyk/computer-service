@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Computer as ComputerType } from "../../../types/common";
-import { CartComputerCounter } from "../../../components/CartComputerCounter";
 import { useNavigate } from "react-router-dom";
+import { Computer as ComputerType } from "../../../../features/computers/types";
+import { CartComputerCounter } from "../../../../features/computers/components/CartComputerCounter";
 
 type ComputerProps = {
   computer: ComputerType;

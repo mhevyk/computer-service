@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
-import { useCart } from "../context/CartContext/useCart";
-import { Computer } from "../types/common";
-import { Button } from "./ui/Button";
+import { useCart } from "../../../context/CartContext/useCart";
+import { Button } from "../../../components/ui/Button";
+import { Computer } from "../types";
 
 type CounterProps = {
   computer: Computer;

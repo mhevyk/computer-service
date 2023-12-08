@@ -21,7 +21,7 @@ function ImageLink({ to, imageURL, children }: ImageLinkProps) {
   );
 }
 
-export function ChooseComputerType() {
+export function ChooseComputerTypePage() {
   return (
     <div className="flex flex-col justify-center lg:flex-row">
       <div>

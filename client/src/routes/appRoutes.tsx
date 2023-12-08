@@ -1,9 +1,9 @@
 import { Navigate, RouteObject } from "react-router-dom";
 import { NotFoundPage } from "../pages/NotFoundPage";
-import { ChooseComputerType } from "../pages/ChooseComputerType";
-import { FactoryComputers } from "../pages/FactoryComputers";
-import { ComputerDetails } from "../pages/FactoryComputers/components/ComputerDetails";
-import { Cart } from "../pages/Cart";
+import { CartPage } from "../pages/CartPage";
+import { ChooseComputerTypePage } from "../pages/Computers/ChooseComputerTypePage";
+import { FactoryComputersPage } from "../pages/Computers/FactoryComputersPage";
+import { ComputerDetailsPage } from "../pages/Computers/ComputerDetailsPage";
 
 export const appRoutes: RouteObject[] = [
   {
@@ -15,17 +15,17 @@ export const appRoutes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <ChooseComputerType />,
+        element: <ChooseComputerTypePage />,
       },
       {
         path: "factory",
         children: [
-          { index: true, element: <FactoryComputers /> },
-          { path: ":computerId", element: <ComputerDetails /> },
+          { index: true, element: <FactoryComputersPage /> },
+          { path: ":computerId", element: <ComputerDetailsPage /> },
         ],
       },
     ],
   },
-  { path: "cart", element: <Cart /> },
+  { path: "cart", element: <CartPage /> },
   { path: "*", element: <NotFoundPage /> },
 ];
