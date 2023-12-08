@@ -48,6 +48,10 @@ export default class OrderModel extends Model {
   @Column(DataType.INTEGER)
   quantity: number;
 
+  @AllowNull(false)
+  @Column(DataType.INTEGER)
+  price: number;
+
   @BelongsTo(() => ComputerModel, "computer_id")
   computer: ComputerModel;
 

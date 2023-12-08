@@ -54,18 +54,21 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzAyMDYwMzc4LCJleHAiOjE3MDIwNjIxNzh9.fqZD33kQPNmxbnUyfDz6OArzPRKOjU29DPSM3jxM-aY
 
 {
-  "computerIds": [
+  "orderRecords": [
     {
       "computer_id": 1,
-      "quantity": 2
+      "quantity": 2,
+      "price": 450
     },
     {
       "computer_id": 2,
-      "quantity": 4
+      "quantity": 4,
+      "price": 220
     },
     {
       "computer_id": 5,
-      "quantity": 1
+      "quantity": 1,
+      "price": 100
     }
-  ]
+  ],
 }

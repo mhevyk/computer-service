@@ -6,15 +6,16 @@ import APIError from "../exceptions/APIError";
 type OrderRecord = {
   computer_id: number;
   quantity: number;
+  price: number;
 };
 
 class OrderService {
-  async createOrder(user_id: number, computerIds: OrderRecord[]) {
+  async createOrder(user_id: number, orderRecords: OrderRecord[]) {
     const transaction = await sequelize.transaction();
     try {
       const orders = await OrderModel.bulkCreate(
-        computerIds.map(({ computer_id, quantity }) => {
-          return { user_id, computer_id, quantity };
+        orderRecords.map(({ computer_id, quantity, price }) => {
+          return { user_id, computer_id, quantity, price };
         }),
         { transaction }
       );

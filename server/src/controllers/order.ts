@@ -4,8 +4,11 @@ import OrderService from "../services/order";
 class OrderController {
   async createOrder(req: Request, res: Response, next: NextFunction) {
     try {
-      const { computerIds } = req.body;
-      const result = await OrderService.createOrder(req.user?.id!, computerIds);
+      const { orderRecords } = req.body;
+      const result = await OrderService.createOrder(
+        req.user?.id!,
+        orderRecords
+      );
       res.json(result);
     } catch (error) {
       next(error);
