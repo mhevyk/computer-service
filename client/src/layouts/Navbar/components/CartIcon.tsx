@@ -1,9 +1,11 @@
 import { Icon } from "@iconify/react";
 import { useCart } from "../../../context/CartContext/useCart";
 import { cc } from "../../../utils/cc";
+import { useNavigate } from "react-router-dom";
 
 export function CartIcon() {
   const { cart } = useCart();
+  const navigate = useNavigate();
 
   let totalAmount = 0;
   let totalCount = 0;
@@ -36,7 +38,12 @@ export function CartIcon() {
           <span className="font-bold text-lg">{totalCount} товарів</span>
           <span className="text-info">Всього: {totalAmount} грн.</span>
           <div className="card-actions">
-            <button className="btn btn-accent btn-block">До кошика</button>
+            <button
+              className="btn btn-accent btn-block"
+              onClick={() => navigate("/app/cart")}
+            >
+              До кошика
+            </button>
           </div>
         </div>
       </div>
