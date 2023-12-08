@@ -4,12 +4,12 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartItem } from "./components/CartItem";
-import { useOrder } from "@features/orders/hooks/useOrder";
+import { useCreateOrder } from "@features/orders/hooks/useCreateOrder";
 
 export function CartPage() {
   const { cart } = useCart();
   const navigate = useNavigate();
-  const [order, { isPending }] = useOrder(cart);
+  const [createOrder, { isPending }] = useCreateOrder();
 
   let totalAmount = 0;
 
@@ -55,7 +55,7 @@ export function CartPage() {
           <Button
             disabled={cart.length === 0}
             isLoading={isPending}
-            onClick={() => order()}
+            onClick={() => createOrder()}
           >
             Підтвердити замовлення
           </Button>
