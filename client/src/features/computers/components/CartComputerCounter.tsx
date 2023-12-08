@@ -15,8 +15,9 @@ export function CartComputerCounter({ computer, ...props }: CounterProps) {
   return (
     <div {...props}>
       <Button
+        className="btn-outline"
+        variant="ghost"
         size="sm"
-        variant="secondary"
         disabled={count === 0}
         onClick={() => {
           removeFromCartById(computer.computer_id);
@@ -26,8 +27,9 @@ export function CartComputerCounter({ computer, ...props }: CounterProps) {
       </Button>
       <span className="px-4">{count}</span>
       <Button
+        className="btn-outline"
+        variant="ghost"
         size="sm"
-        variant="secondary"
         onClick={() => {
           addToCart(computer);
         }}
