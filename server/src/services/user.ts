@@ -3,6 +3,7 @@ import RoleModel from "../database/models/role.model";
 import UserModel from "../database/models/user.model";
 import APIError from "../exceptions/APIError";
 import { RegistrationBody } from "../types/request";
+import { checkRoleValid } from "../permissions/roles";
 
 class UserService {
   async findUserById(id: number) {
@@ -27,15 +28,22 @@ class UserService {
       where: { name: role },
     });
 
-    if (roleRecord === null) {
+    let role_id: number;
+
+    if (roleRecord === null && checkRoleValid(role)) {
+      const userRoleRecord = await RoleModel.create({ name: role });
+      role_id = userRoleRecord.role_id;
+    } else if (roleRecord === null) {
       throw APIError.BadRequest(`Ролі ${role} немає у базі даних`);
+    } else {
+      role_id = roleRecord.role_id;
     }
 
     const userRecord = await UserModel.create(
       {
         username,
         password,
-        role_id: roleRecord.role_id,
+        role_id,
       },
       options
     );

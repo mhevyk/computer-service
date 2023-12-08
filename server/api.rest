@@ -14,8 +14,8 @@ POST http://localhost:5000/admin-panel/registration
 Content-Type: application/json
 
 {
-    "username": "admin5",
-    "password": "admin",
+    "username": "superadmin",
+    "password": "superadmin",
     "role": "ADMIN"
 }
 
