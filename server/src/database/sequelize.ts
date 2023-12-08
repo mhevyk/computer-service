@@ -13,5 +13,10 @@ export const sequelize = new Sequelize({
   models: [MODELS_PATH],
   define: {
     timestamps: false,
+    underscored: true,
+  },
+  dialectOptions: {
+    useUTC: false,
+    timezone: "+00:00",
   },
 });
