@@ -1,14 +1,13 @@
-import { CartRecord } from "@context/CartContext/CartProvider";
 import { useMutation } from "@tanstack/react-query";
 import { OrderRecord, OrderService } from "../services/OrderService";
 import { enqueueSnackbar } from "notistack";
 import { useCart } from "@context/CartContext/useCart";
 
-export function useOrder(cart: CartRecord[]) {
-  const { clearCart } = useCart();
+export function useCreateOrder() {
+  const { cart, clearCart } = useCart();
   const { mutateAsync, ...rest } = useMutation({
     mutationFn: (orderRecords: OrderRecord[]) => {
-      return OrderService.order(orderRecords);
+      return OrderService.createOrder(orderRecords);
     },
   });
 

@@ -49,9 +49,9 @@ GET http://localhost:5000/computers/100
 
 ###
 
-POST http://localhost:5000/order
+POST http://localhost:5000/orders/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzAyMDYwMzc4LCJleHAiOjE3MDIwNjIxNzh9.fqZD33kQPNmxbnUyfDz6OArzPRKOjU29DPSM3jxM-aY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzAyMDY0NjkxLCJleHAiOjE3MDIwNjY0OTF9.Y4CiTyl6YgnIl6ewW24QApvtGZCX_2uCKbRL0h86bMg
 
 {
   "orderRecords": [
@@ -70,5 +70,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hb
       "quantity": 1,
       "price": 100
     }
-  ],
+  ]
 }
+
+###
+
+GET http://localhost:5000/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzAyMDY2Nzk5LCJleHAiOjE3MDIwNjg1OTl9.FFLyf302VH18poiM5b6CDKGCPyuFjyHUqs91TznM-7w

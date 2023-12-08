@@ -39,7 +39,7 @@ export default class ComputerModel extends Model {
   @Default(0)
   @Column(DataType.VIRTUAL)
   get price() {
-    return this.components.reduce(
+    return this.components?.reduce(
       (sum, component) => sum + (component.price_per_unit || 0),
       0
     );

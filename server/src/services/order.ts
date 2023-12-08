@@ -2,6 +2,8 @@ import { ForeignKeyConstraintError } from "sequelize";
 import OrderModel from "../database/models/order.model";
 import { sequelize } from "../database/sequelize";
 import APIError from "../exceptions/APIError";
+import UserDto from "../dtos/user";
+import ComputerModel from "../database/models/computer.model";
 
 type OrderRecord = {
   computer_id: number;
@@ -41,6 +43,15 @@ class OrderService {
 
       throw error;
     }
+  }
+
+  async getOrders(user: UserDto) {
+    return await OrderModel.findAll({
+      where: {
+        user_id: user.id,
+      },
+      include: [ComputerModel],
+    });
   }
 }
 

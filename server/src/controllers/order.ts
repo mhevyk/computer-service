@@ -14,6 +14,16 @@ class OrderController {
       next(error);
     }
   }
+
+  async getOrders(req: Request, res: Response, next: NextFunction) {
+    try {
+      const user = req.user!;
+      const orders = await OrderService.getOrders(user);
+      res.json(orders);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default new OrderController();
