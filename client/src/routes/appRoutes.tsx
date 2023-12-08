@@ -2,6 +2,7 @@ import { Navigate, RouteObject } from "react-router-dom";
 import { NotFoundPage } from "../pages/NotFoundPage";
 import { ChooseComputerType } from "../pages/ChooseComputerType";
 import { FactoryComputers } from "../pages/FactoryComputers";
+import { ComputerDetails } from "../pages/FactoryComputers/components/ComputerDetails";
 
 export const appRoutes: RouteObject[] = [
   {
@@ -17,7 +18,10 @@ export const appRoutes: RouteObject[] = [
       },
       {
         path: "factory",
-        element: <FactoryComputers />,
+        children: [
+          { index: true, element: <FactoryComputers /> },
+          { path: ":computerId", element: <ComputerDetails /> },
+        ],
       },
     ],
   },
