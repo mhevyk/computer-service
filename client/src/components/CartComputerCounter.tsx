@@ -1,18 +1,19 @@
+import { ComponentProps } from "react";
 import { useCart } from "../context/CartContext/useCart";
 import { Computer } from "../types/common";
 import { Button } from "./ui/Button";
 
 type CounterProps = {
   computer: Computer;
-};
+} & ComponentProps<"div">;
 
-export function CartComputerCounter({ computer }: CounterProps) {
+export function CartComputerCounter({ computer, ...props }: CounterProps) {
   const { addToCart, removeFromCartById, getCount } = useCart();
 
   const count = getCount(computer.computer_id);
 
   return (
-    <div>
+    <div {...props}>
       <Button
         size="sm"
         disabled={count === 0}
