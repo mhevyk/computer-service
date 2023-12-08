@@ -7,6 +7,6 @@ export type OrderRecord = {
 
 export class OrderService {
   static order(orderRecords: OrderRecord[]) {
-    return $authApi.post("/order", { orderRecords });
+    return $authApi.post("/orders/create", { orderRecords });
   }
 }

@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use("/auth", authRoutes);
 app.use("/admin-panel", adminPanelRoutes);
 app.use("/computers", computerRoutes);
-app.use("/order", orderRoutes);
+app.use("/orders", orderRoutes);
 app.use(errorMiddleware);
 
 function handleListen() {
