@@ -1,35 +1,9 @@
 import { Button } from "@components/ui/Button";
 import { useCart } from "@context/CartContext/useCart";
-import { CartComputerCounter } from "@features/computers/components/CartComputerCounter";
-import { Computer } from "@features/computers/types";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
-function CartItem({ computer }: { computer: Computer }) {
-  return (
-    <li className="flex">
-      <div className="px-6 flex flex-1 flex-col border-l border-primary py-6">
-        <div className="flex justify-between text-base font-medium ">
-          <h3 className="text-gray-400">
-            <Link to={`/app/computers/factory/${computer.computer_id}`}>
-              {computer.brand} {computer.name}
-            </Link>
-          </h3>
-          <p className="text-accent">{computer.price} грн.</p>
-        </div>
-        <div className="flex items-center justify-between text-sm py-4">
-          <p className="text-gray-600">
-            {computer.is_custom ? "Заводська модель" : "Кастомний"}
-          </p>
-          <div className="flex">
-            <CartComputerCounter computer={computer} />
-          </div>
-        </div>
-      </div>
-    </li>
-  );
-}
+import { useNavigate } from "react-router-dom";
+import { CartItem } from "./components/CartItem";
 
 export function CartPage() {
   const { cart } = useCart();
@@ -60,8 +34,8 @@ export function CartPage() {
 
       <div className="border-t border-primary px-6 py-4 mt-8 bg-base-200">
         <div className="flex justify-between items-center text-base font-medium text-accent">
-          <p>Підсумок</p>
-          <p>{totalAmount} грн.</p>
+          <p className="text-xl">Всього</p>
+          <p className="text-3xl">{totalAmount} грн.</p>
         </div>
         <div className="mt-6 flex justify-between">
           <div className="flex justify-center items-center text-center text-sm text-gray-500">
@@ -76,7 +50,7 @@ export function CartPage() {
               </Button>
             </p>
           </div>
-          <Button>Підтвердити замовлення</Button>
+          <Button disabled={cart.length === 0}>Підтвердити замовлення</Button>
         </div>
       </div>
     </div>

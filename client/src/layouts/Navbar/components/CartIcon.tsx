@@ -11,7 +11,7 @@ export function CartIcon() {
   let totalCount = 0;
 
   for (const { computer, count } of cart) {
-    totalAmount += computer.price;
+    totalAmount += computer.price * count;
     totalCount += count;
   }
 

@@ -1,12 +1,12 @@
 import { Computer } from "@features/computers/types";
 import { createContext, useReducer, PropsWithChildren } from "react";
 
-type CardRecord = {
+export type CartRecord = {
   count: number;
   computer: Computer;
 };
 
-type State = Map<number, CardRecord>;
+type State = Map<number, CartRecord>;
 
 type Action =
   | { type: "ADD_TO_CART"; payload: Computer }
