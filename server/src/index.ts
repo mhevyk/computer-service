@@ -5,6 +5,7 @@ import { sequelize } from "./database/sequelize";
 import authRoutes from "./routes/auth";
 import computerRoutes from "./routes/computer";
 import adminPanelRoutes from "./routes/admin";
+import orderRoutes from "./routes/order";
 import errorMiddleware from "./middlewares/error";
 import corsMiddleware from "./middlewares/cors";
 import backupDatabaseJob from "./jobs/backupDatabase";
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use("/auth", authRoutes);
 app.use("/admin-panel", adminPanelRoutes);
 app.use("/computers", computerRoutes);
+app.use("/order", orderRoutes);
 app.use(errorMiddleware);
 
 function handleListen() {

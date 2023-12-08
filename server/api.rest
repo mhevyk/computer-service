@@ -46,3 +46,13 @@ GET http://localhost:5000/computers
 
 ###
 GET http://localhost:5000/computers/100
+
+###
+
+POST http://localhost:5000/order
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "computerIds": [1, 2, 3]
+}
