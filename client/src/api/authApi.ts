@@ -1,17 +1,17 @@
 import axios from "axios";
-import AuthService from "../features/authentication/services/AuthService";
-import UserStoreService from "../features/authentication/services/UserStoreService";
+import AuthService from "@auth/services/AuthService";
+import UserStoreService from "@auth/services/UserStoreService";
 import { BASE_URL } from "./common";
 
 export const $authApi = axios.create({
   withCredentials: true,
-  baseURL: `${BASE_URL}/auth`,
+  baseURL: BASE_URL,
 });
 
 $authApi.interceptors.request.use(config => {
-  config.headers.Authorization = `Bearer ${
-    UserStoreService.getValue()?.accessToken
-  }`;
+  const token = UserStoreService.getValue()?.accessToken;
+  config.headers.Authorization = `Bearer ${token}`;
+
   return config;
 });
 
@@ -21,12 +21,14 @@ $authApi.interceptors.response.use(
   },
   async error => {
     const originalRequest = error.config;
+
     if (
       error.response.status == 401 &&
       error.config &&
       !error.config._isRetry
     ) {
       originalRequest._isRetry = true;
+
       try {
         const response = await AuthService.refresh();
         UserStoreService.saveValue(response.data);
@@ -35,6 +37,7 @@ $authApi.interceptors.response.use(
         console.log("Not auhorized");
       }
     }
+
     throw error;
   }
 );
