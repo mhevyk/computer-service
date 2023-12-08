@@ -26,7 +26,7 @@ POST http://localhost:5000/auth/login
 Content-Type: application/json
 
 {
-    "username": "admin5",
+    "username": "admin",
     "password": "admin"
 }
 
@@ -51,8 +51,8 @@ GET http://localhost:5000/computers/100
 
 POST http://localhost:5000/order
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzAyMDU1MTE2LCJleHAiOjE3MDIwNTY5MTZ9.cA_IElRAxsUb2DQGmTGKJ_oVyQ1idEad0ifMaDC0w_Q
 
 {
-    "userId": 1,
     "computerIds": [1, 2, 3]
 }
