@@ -24,4 +24,8 @@ export const menu: MenuItem[] = [
     label: "Замовлення",
     path: "orders",
   },
+  {
+    label: "Кошик",
+    path: "cart",
+  },
 ];
