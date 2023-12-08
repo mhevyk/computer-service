@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
-import { useCart } from "../../../context/CartContext/useCart";
-import { cc } from "../../../utils/cc";
+import { useCart } from "@context/CartContext/useCart";
+import { cc } from "@utils/cc";
 import { useNavigate } from "react-router-dom";
 
 export function CartIcon() {

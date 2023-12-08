@@ -1,6 +1,6 @@
 import { Navigate, RouteObject } from "react-router-dom";
-import { LoginPage } from "../pages/Auth/LoginPage";
-import { RegistrationPage } from "../pages/Auth/RegistrationPage";
+import { LoginPage } from "@pages/Auth/LoginPage";
+import { RegistrationPage } from "@pages/Auth/RegistrationPage";
 
 export const authRoutes: RouteObject[] = [
   {

@@ -1,12 +1,12 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/AuthService";
-import { QUERY_KEY } from "../../../constants/queryKeys";
+import { QUERY_KEY } from "@constants/queryKeys";
 import { AuthResponse, RegisrationCredentials } from "../types/auth";
 import { AxiosError, AxiosResponse } from "axios";
-import { APIError } from "../../../types/common";
+import { APIError } from "@types";
 import { useSnackbar } from "notistack";
-import { extractErrorMessage } from "../../../utils/extractErrorMessage";
+import { extractErrorMessage } from "@utils/extractErrorMessage";
 
 export function useRegistration() {
   const queryClient = useQueryClient();

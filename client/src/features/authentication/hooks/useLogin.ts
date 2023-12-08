@@ -1,12 +1,12 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/AuthService";
-import { QUERY_KEY } from "../../../constants/queryKeys";
+import { QUERY_KEY } from "@constants/queryKeys";
 import { AuthResponse, LoginCredentials } from "../types/auth";
 import { AxiosError, AxiosResponse } from "axios";
 import { useSnackbar } from "notistack";
-import { APIError } from "../../../types/common";
-import { extractErrorMessage } from "../../../utils/extractErrorMessage";
+import { APIError } from "@types";
+import { extractErrorMessage } from "@utils/extractErrorMessage";
 
 export function useLogin() {
   const queryClient = useQueryClient();

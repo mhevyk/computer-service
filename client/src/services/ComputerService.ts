@@ -1,4 +1,4 @@
-import { $publicApi } from "../axios/publicApi";
+import { $publicApi } from "../api/publicApi";
 
 class ComputerService {
   async getComputers() {

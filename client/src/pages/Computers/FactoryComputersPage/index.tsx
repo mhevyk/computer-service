@@ -1,4 +1,4 @@
-import { useComputers } from "../../../features/computers/hooks/useComputers";
+import { useComputers } from "@computers/hooks/useComputers";
 import { Computer } from "./components/Computer";
 
 export function FactoryComputersPage() {

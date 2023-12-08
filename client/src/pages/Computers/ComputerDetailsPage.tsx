@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { ComputerComponents } from "./FactoryComputersPage/components/ComputerComponents";
-import { useCart } from "../../context/CartContext/useCart";
-import { useComputer } from "../../features/computers/hooks/useComputer";
-import { formatDate } from "../../utils/formatDate";
-import { Button } from "../../components/ui/Button";
+import { useCart } from "@context/CartContext/useCart";
+import { useComputer } from "@computers/hooks/useComputer";
+import { formatDate } from "@utils/formatDate";
+import { Button } from "@components/ui/Button";
 
 export function ComputerDetailsPage() {
   const { computerId } = useParams();

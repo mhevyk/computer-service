@@ -1,8 +1,8 @@
 import { Icon } from "@iconify/react";
 import { ReactNode } from "react";
-import { Size } from "../../types/common";
+import { Size } from "@types";
 import { Button } from "./Button";
-import { cc } from "../../utils/cc";
+import { cc } from "@utils/cc";
 
 const DROPDOWN_VARIANTS = ["start", "end"];
 

@@ -1,10 +1,10 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import { ErrorPage } from "../pages/ErrorPage";
-import { NotFoundPage } from "../pages/NotFoundPage";
+import { ErrorPage } from "@pages/ErrorPage";
+import { NotFoundPage } from "@pages/NotFoundPage";
 import { authRoutes } from "./authRoutes";
 import { RootLayout } from "../layouts/RootLayout";
 import { appRoutes } from "./appRoutes";
-import { ProtectedRoute } from "../components/ProtectedRoute";
+import { ProtectedRoute } from "@components/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {

@@ -1,5 +1,5 @@
+import { Computer } from "@features/computers/types";
 import { createContext, useReducer, PropsWithChildren } from "react";
-import { Computer } from "../../types/common";
 
 type CardRecord = {
   count: number;

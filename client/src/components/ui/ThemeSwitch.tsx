@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
-import { useTheme } from "../../context/ThemeContext/useTheme";
-import { THEMES } from "../../context/ThemeContext/constants";
+import { useTheme } from "@context/ThemeContext/useTheme";
+import { THEMES } from "@context/ThemeContext/constants";
 import { Icon } from "@iconify/react";
 
 export function ThemeSwitch() {

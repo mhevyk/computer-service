@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
-import { Dropdown } from "../../../components/ui/Dropdown";
-import { NavLink } from "../../../components/ui/NavLink";
+import { Dropdown } from "@components/ui/Dropdown";
+import { NavLink } from "@components/ui/NavLink";
 import { MenuItem, menu } from "../components/menu";
 import { concatPaths } from "./concatPaths";
 

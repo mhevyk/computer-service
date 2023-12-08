@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { QUERY_KEY } from "../../../constants/queryKeys";
+import { QUERY_KEY } from "@constants/queryKeys";
 import ComputerService from "../../../services/ComputerService";
 import { AxiosError } from "axios";
 import { Computer } from "../types";

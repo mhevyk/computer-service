@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { APIError } from "../types/common";
+import { APIError } from "../types";
 
 export function extractErrorMessage(error: unknown) {
   if (error instanceof AxiosError) {

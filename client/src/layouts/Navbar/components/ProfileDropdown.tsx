@@ -1,5 +1,5 @@
-import { useLogout } from "../../../features/authentication/hooks/useLogout";
-import { useUser } from "../../../features/authentication/hooks/useUser";
+import { useLogout } from "@auth/hooks/useLogout";
+import { useUser } from "@auth/hooks/useUser";
 
 function composeInitials(username: string) {
   return username.slice(0, 2).toUpperCase();

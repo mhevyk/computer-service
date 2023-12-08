@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { QUERY_KEY } from "../../../constants/queryKeys";
+import { QUERY_KEY } from "@constants/queryKeys";
 import { AuthResponse } from "../types/auth";
 import AuthService from "../services/AuthService";
 import { AxiosError } from "axios";

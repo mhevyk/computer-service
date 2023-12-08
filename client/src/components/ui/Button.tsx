@@ -1,6 +1,6 @@
 import { ComponentProps, PropsWithChildren, ReactNode } from "react";
-import { SIZES, Size, VARIANTS, Variant } from "../../types/common";
-import { cc } from "../../utils/cc";
+import { SIZES, Size, VARIANTS, Variant } from "@types";
+import { cc } from "@utils/cc";
 import { twMerge } from "tailwind-merge";
 
 type ButtonProps = PropsWithChildren &

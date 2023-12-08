@@ -1,10 +1,10 @@
 import { FormEvent } from "react";
-import { useRegistration } from "../../features/authentication/hooks/useRegistration";
 import { Link } from "react-router-dom";
-import { Input } from "../../components/ui/Input";
-import { Button } from "../../components/ui/Button";
-import { useForm } from "../../features/authentication/hooks/useForm";
 import { useSnackbar } from "notistack";
+import { Input } from "@components/ui/Input";
+import { Button } from "@components/ui/Button";
+import { useForm } from "@auth/hooks/useForm";
+import { useRegistration } from "@auth/hooks/useRegistration";
 
 const initialData = {
   username: "",
