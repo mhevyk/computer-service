@@ -36,8 +36,8 @@ export function CartIcon() {
       >
         <div className="card-body">
           <span className="font-bold text-lg">{totalCount} товарів</span>
-          <span className="text-info">Всього: {totalAmount} грн.</span>
-          <div className="card-actions">
+          <span className="text-primary">Всього: {totalAmount} грн.</span>
+          <div className="card-actions mt-4">
             <button
               className="btn btn-accent btn-block"
               onClick={() => navigate("/app/cart")}

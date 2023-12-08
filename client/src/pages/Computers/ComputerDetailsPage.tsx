@@ -17,7 +17,7 @@ export function ComputerDetailsPage() {
 
   return (
     computer && (
-      <>
+      <div className="px-2">
         <table className="table">
           <thead>
             <tr>
@@ -57,7 +57,7 @@ export function ComputerDetailsPage() {
         <Button variant="accent" onClick={() => addToCart(computer)}>
           Додати у кошик
         </Button>
-      </>
+      </div>
     )
   );
 }
