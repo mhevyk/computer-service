@@ -44,6 +44,10 @@ export default class OrderModel extends Model {
   @Column(DataType.ENUM(...Object.keys(ORDER_STATUS)))
   status: OrderStatus;
 
+  @AllowNull(false)
+  @Column(DataType.INTEGER)
+  quantity: number;
+
   @BelongsTo(() => ComputerModel, "computer_id")
   computer: ComputerModel;
 

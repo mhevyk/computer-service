@@ -3,12 +3,19 @@ import OrderModel from "../database/models/order.model";
 import { sequelize } from "../database/sequelize";
 import APIError from "../exceptions/APIError";
 
+type OrderRecord = {
+  computer_id: number;
+  quantity: number;
+};
+
 class OrderService {
-  async createOrder(user_id: number, computerIds: number[]) {
+  async createOrder(user_id: number, computerIds: OrderRecord[]) {
     const transaction = await sequelize.transaction();
     try {
       const orders = await OrderModel.bulkCreate(
-        computerIds.map(computerId => ({ user_id, computer_id: computerId })),
+        computerIds.map(({ computer_id, quantity }) => {
+          return { user_id, computer_id, quantity };
+        }),
         { transaction }
       );
 
@@ -22,7 +29,7 @@ class OrderService {
         const detail = (error.original as any).detail as string; // TODO: fix type error or use another approach
         const match = detail.match(/\((\d+)\)/);
 
-        let errorMessage = "Один з переданих комп'ютерів не існує"ж
+        let errorMessage = "Один з переданих комп'ютерів не існує";
 
         if (match) {
           errorMessage = `Комп'ютер з id '${match[1]}' не існує у базі даних'`;
