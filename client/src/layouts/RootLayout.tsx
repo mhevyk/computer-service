@@ -6,13 +6,13 @@ export function RootLayout() {
   const isLoading = state === "loading";
 
   return (
-    <>
+    <div className="flex flex-col h-screen">
       <Navbar />
       <ScrollRestoration />
       {isLoading && <div className="loading-spinner" />}
-      <div className={`container ${isLoading ? "loading" : ""}`}>
+      <div className={`container flex-1 ${isLoading ? "loading" : ""}`}>
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }
