@@ -13,12 +13,12 @@ class ComputerController {
   }
 
   async getComputer(
-    req: Request<{ computerId: number }>,
+    req: Request<{ computerId: string }>,
     res: Response,
     next: NextFunction
   ) {
     try {
-      const computerId = req.params.computerId;
+      const computerId = Number(req.params.computerId);
       const computer = await ComputerService.getComputer(computerId);
       return res.json(computer);
     } catch (error) {

@@ -1,9 +1,10 @@
 import { Router } from "express";
 import ComputerController from "../controllers/computer";
+import authMiddleware from "../middlewares/auth";
 
 const router = Router();
 
-router.get("/", ComputerController.getComputers);
-router.get("/:computerId", ComputerController.getComputer);
+router.get("/", authMiddleware, ComputerController.getComputers);
+router.get("/:computerId", authMiddleware, ComputerController.getComputer);
 
 export default router;
