@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "./config";
 import express from "express";
 import cookieParser from "cookie-parser";
 import { sequelize } from "./database/sequelize";
@@ -8,11 +8,11 @@ import adminPanelRoutes from "./routes/admin";
 import orderRoutes from "./routes/order";
 import errorMiddleware from "./middlewares/error";
 import corsMiddleware from "./middlewares/cors";
-import backupDatabaseJob from "./jobs/backupDatabase";
+import { IS_PROD } from "./constants/global";
 
 const PORT = process.env.PORT || 5000;
 
-const app = express();
+export const app = express();
 
 app.use(express.json());
 app.use(corsMiddleware);
@@ -27,7 +27,10 @@ function handleListen() {
   console.log(`Server started on http://localhost:${PORT}/`);
 }
 
-//backupDatabaseJob.start();
+if (IS_PROD) {
+  const backupDatabaseJob = require("./jobs/backupDatabase");
+  backupDatabaseJob.start();
+}
 
 async function start() {
   await sequelize.authenticate();
