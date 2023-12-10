@@ -7,7 +7,6 @@ import {
   AutoIncrement,
   AllowNull,
   ForeignKey,
-  BelongsTo,
 } from "sequelize-typescript";
 import ComputerModel from "./computer.model";
 
@@ -16,7 +15,7 @@ export default class ComponentModel extends Model {
   @PrimaryKey
   @AutoIncrement
   @Column(DataType.INTEGER)
-  component_id: number; // TODO: change to component_id
+  component_id: number;
 
   @AllowNull(false)
   @Column(DataType.INTEGER)
