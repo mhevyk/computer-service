@@ -26,9 +26,10 @@ class AuthController {
       );
       res.cookie(AUTH_COOKIE_KEY, userData.refreshToken, AUTH_COOKIE_OPTIONS);
 
-      // TODO: exclude refreshToken from response
-
-      return res.json(userData);
+      return res.json({
+        user: userData.user,
+        accessToken: userData.accessToken,
+      });
     } catch (error) {
       next(error);
     }
@@ -45,7 +46,10 @@ class AuthController {
       const userData = await AuthService.login(username, password);
       res.cookie(AUTH_COOKIE_KEY, userData.refreshToken, AUTH_COOKIE_OPTIONS);
 
-      return res.json(userData);
+      return res.json({
+        user: userData.user,
+        accessToken: userData.accessToken,
+      });
     } catch (error) {
       next(error);
     }
@@ -79,7 +83,10 @@ class AuthController {
       const userData = await AuthService.refresh(refreshToken);
       res.cookie(AUTH_COOKIE_KEY, userData.refreshToken, AUTH_COOKIE_OPTIONS);
 
-      return res.json(userData);
+      return res.json({
+        user: userData.user,
+        accessToken: userData.accessToken,
+      });
     } catch (error) {
       next(error);
     }
