@@ -20,6 +20,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
+    "types": ["vitest/globals"],
+
     /* Import aliases */
     "baseUrl": ".",
     "paths": {
@@ -35,6 +37,6 @@
       "@computers/*": ["src/features/computers/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "setupTests.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
