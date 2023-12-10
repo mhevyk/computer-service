@@ -1,16 +1,14 @@
 import cors, { CorsOptions } from "cors";
 
-const ALLOWED_ORIGIN = process.env.CLIENT_BASE_URL;
+const originWhitelist = [process.env.CLIENT_BASE_URL];
 
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
-    const isAllowed = origin?.startsWith(ALLOWED_ORIGIN);
-
-    if (isAllowed) {
-      return callback(null, origin);
+    if (origin && originWhitelist.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
     }
-
-    callback(new Error("Not allowed by CORS"));
   },
   credentials: true,
 };

@@ -2,6 +2,7 @@
 
 POST http://localhost:5000/auth/registration
 Content-Type: application/json
+Origin: http://localhost:5173
 
 {
     "username": "petro",
@@ -12,6 +13,7 @@ Content-Type: application/json
 
 POST http://localhost:5000/admin-panel/registration
 Content-Type: application/json
+Origin: http://localhost:5173
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJzdXBlcmFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzAyMTE5OTc4LCJleHAiOjE3MDIxMjE3Nzh9.U9uBzjGiwPjpR4E9tNi_DW8l3lnvC19fxGeLmx40R-U
 
 {
@@ -25,6 +27,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hb
 
 POST http://localhost:5000/auth/login
 Content-Type: application/json
+Origin: http://localhost:5173
 
 {
     "username": "superadmin",
@@ -35,32 +38,38 @@ Content-Type: application/json
 ### Вихід авторизованого користувача з системи
 
 POST http://localhost:5000/auth/logout
+Origin: http://localhost:5173
 HttpOnlyCookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsInVzZXJuYW1lIjoiYWRtaW41Iiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzAwMzI0MDQ0LCJleHAiOjE3MDI5MTYwNDR9.dE0Ox4ao4mG3Ze2bdCNq8DLhUrVFWI5-81feDbYbVJw
 
 ### Оновлення даних про авторизаційні токени
 
 GET http://localhost:5000/auth/refresh
+Origin: http://localhost:5173
 HttpOnlyCookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsInVzZXJuYW1lIjoiYWRtaW41Iiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzAwMzI0MDQ0LCJleHAiOjE3MDI5MTYwNDR9.dE0Ox4ao4mG3Ze2bdCNq8DLhUrVFWI5-81feDbYbVJw
 
 ### Отримання списку комп'ютерів
 
 GET http://localhost:5000/computers
+Origin: http://localhost:5173
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJzdXBlcmFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzAyMTIwMjg2LCJleHAiOjE3MDIxMjIwODZ9.i_x2lsNqiYJzCuf0NJ7szTv9SvQ6QwVW6D2fmlpgdZY
 
 ### Отримання комп'ютера з валідним ідентифікатором
 
 GET http://localhost:5000/computers/1
+Origin: http://localhost:5173
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJzdXBlcmFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzAyMTIwMjg2LCJleHAiOjE3MDIxMjIwODZ9.i_x2lsNqiYJzCuf0NJ7szTv9SvQ6QwVW6D2fmlpgdZY
 
 ### ### Отримання комп'ютера з неіснуючим ідентифікатором
 
 GET http://localhost:5000/computers/100
+Origin: http://localhost:5173
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJzdXBlcmFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzAyMTIwMjg2LCJleHAiOjE3MDIxMjIwODZ9.i_x2lsNqiYJzCuf0NJ7szTv9SvQ6QwVW6D2fmlpgdZY
 
 ### Створення замовлення
 
 POST http://localhost:5000/orders/create
 Content-Type: application/json
+Origin: http://localhost:5173
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzAyMDY0NjkxLCJleHAiOjE3MDIwNjY0OTF9.Y4CiTyl6YgnIl6ewW24QApvtGZCX_2uCKbRL0h86bMg
 
 {
@@ -86,4 +95,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hb
 ### Отримання списку замовлень
 
 GET http://localhost:5000/orders
+Origin: http://localhost:5173
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzAyMDY2Nzk5LCJleHAiOjE3MDIwNjg1OTl9.FFLyf302VH18poiM5b6CDKGCPyuFjyHUqs91TznM-7w
