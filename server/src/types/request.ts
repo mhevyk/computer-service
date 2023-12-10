@@ -18,7 +18,7 @@ export interface RequestWithCookies<T> extends Request {
   cookies: T;
 }
 
-export type Order = {
+export type OrderRecord = {
   computer_id: number;
   quantity: number;
   price: number;

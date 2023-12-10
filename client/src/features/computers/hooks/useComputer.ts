@@ -14,7 +14,5 @@ export function useComputer(computerId: number) {
     },
   });
 
-  console.log(data);
-
   return data;
 }

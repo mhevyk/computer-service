@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import OrderService from "../services/order";
-import { RequestWithBody, Order } from "../types/request";
+import { RequestWithBody, OrderRecord } from "../types/request";
 
 class OrderController {
   async createOrder(
-    req: RequestWithBody<{ orderRecords: Order[] }>,
+    req: RequestWithBody<{ orderRecords: OrderRecord[] }>,
     res: Response,
     next: NextFunction
   ) {
@@ -23,7 +23,7 @@ class OrderController {
   async getOrders(req: Request, res: Response, next: NextFunction) {
     try {
       const user = req.user!;
-      const orders = await OrderService.getOrders(user);
+      const orders = await OrderService.getOrders(user.id);
       res.json(orders);
     } catch (error) {
       next(error);

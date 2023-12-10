@@ -4,15 +4,15 @@ import { sequelize } from "../database/sequelize";
 import APIError from "../exceptions/APIError";
 import UserDto from "../dtos/user";
 import ComputerModel from "../database/models/computer.model";
-import { Order } from "../types/request";
+import { OrderRecord } from "../types/request";
 
 class OrderService {
-  async createOrder(user_id: number, orderRecords: Order[]) {
+  async createOrder(userId: number, orderRecords: OrderRecord[]) {
     const transaction = await sequelize.transaction();
     try {
       const orders = await OrderModel.bulkCreate(
         orderRecords.map(({ computer_id, quantity, price }) => {
-          return { user_id, computer_id, quantity, price };
+          return { user_id: userId, computer_id, quantity, price };
         }),
         { transaction }
       );
@@ -40,10 +40,10 @@ class OrderService {
     }
   }
 
-  async getOrders(user: UserDto) {
+  async getOrders(userId: number) {
     return await OrderModel.findAll({
       where: {
-        user_id: user.id,
+        user_id: userId,
       },
       order: [["created_at", "ASC"]],
       include: [ComputerModel],
