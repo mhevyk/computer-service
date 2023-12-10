@@ -17,3 +17,9 @@ export type RequestWithBody<T> = Request<{}, {}, T, {}>;
 export interface RequestWithCookies<T> extends Request {
   cookies: T;
 }
+
+export type Order = {
+  computer_id: number;
+  quantity: number;
+  price: number;
+};

@@ -1,8 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import OrderService from "../services/order";
+import { RequestWithBody, Order } from "../types/request";
 
 class OrderController {
-  async createOrder(req: Request, res: Response, next: NextFunction) {
+  async createOrder(
+    req: RequestWithBody<{ orderRecords: Order[] }>,
+    res: Response,
+    next: NextFunction
+  ) {
     try {
       const { orderRecords } = req.body;
       const result = await OrderService.createOrder(

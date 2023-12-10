@@ -4,15 +4,10 @@ import { sequelize } from "../database/sequelize";
 import APIError from "../exceptions/APIError";
 import UserDto from "../dtos/user";
 import ComputerModel from "../database/models/computer.model";
-
-type OrderRecord = {
-  computer_id: number;
-  quantity: number;
-  price: number;
-};
+import { Order } from "../types/request";
 
 class OrderService {
-  async createOrder(user_id: number, orderRecords: OrderRecord[]) {
+  async createOrder(user_id: number, orderRecords: Order[]) {
     const transaction = await sequelize.transaction();
     try {
       const orders = await OrderModel.bulkCreate(
