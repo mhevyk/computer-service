@@ -7,7 +7,7 @@ function composeInitials(username: string) {
 
 export function ProfileDropDown() {
   const logout = useLogout();
-  const { user } = useUser();
+  const user = useUser();
 
   return (
     <div className="dropdown dropdown-end">

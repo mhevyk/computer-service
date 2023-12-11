@@ -31,5 +31,5 @@ export function useUser() {
     }
   }, [response, isError]);
 
-  return response ?? null;
+  return response?.user ?? null;
 }
