@@ -12,7 +12,7 @@ const map = new Map([
     "memory_id",
     {
       name: "Пам'ять",
-      icon: <Icon icon="material-symbols:memory" />,
+      icon: <Icon icon="fa-solid:memory" />,
     },
   ],
   [
@@ -29,7 +29,20 @@ const map = new Map([
       icon: <Icon icon="ph:power-bold" />,
     },
   ],
-  // TODO: add rest components
+  [
+    "videocard_id",
+    {
+      name: "Відеокарта",
+      icon: <Icon icon="mdi:gpu" />,
+    },
+  ],
+  [
+    "processor_id",
+    {
+      name: "Процесор",
+      icon: <Icon icon="uil:processor" />,
+    },
+  ],
 ]);
 
 function getComponentType(component: Component) {
