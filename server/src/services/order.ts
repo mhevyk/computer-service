@@ -2,7 +2,6 @@ import { ForeignKeyConstraintError } from "sequelize";
 import OrderModel from "../database/models/order.model";
 import { sequelize } from "../database/sequelize";
 import APIError from "../exceptions/APIError";
-import UserDto from "../dtos/user";
 import ComputerModel from "../database/models/computer.model";
 import { OrderRecord } from "../types/request";
 
@@ -25,15 +24,17 @@ class OrderService {
 
       if (error instanceof ForeignKeyConstraintError) {
         const detail = (error.original as any).detail as string; // TODO: fix type error or use another approach
-        const match = detail.match(/\((\d+)\)/);
+        const computerIdMatch = detail.match(/\((computer_id)=(\d+)\)/);
 
-        let errorMessage = "Один з переданих комп'ютерів не існує";
-
-        if (match) {
-          errorMessage = `Комп'ютер з id '${match[1]}' не існує у базі даних'`;
+        if (computerIdMatch) {
+          throw APIError.BadRequest("Один з переданих комп'ютерів не існує");
         }
 
-        throw APIError.BadRequest(errorMessage);
+        const userIdMatch = detail.match(/\((user_id)=(\d+)\)/);
+
+        if (userIdMatch) {
+          throw APIError.Unauthourized();
+        }
       }
 
       throw error;
