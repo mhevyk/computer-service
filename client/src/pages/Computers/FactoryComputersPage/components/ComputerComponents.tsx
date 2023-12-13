@@ -62,8 +62,6 @@ type ComputerComponentsProps = {
 function ComputerComponent({ component }: { component: Component }) {
   const componentTypeDetails = getComponentType(component);
 
-  console.log(componentTypeDetails);
-
   return (
     <li
       key={component.component_id}
