@@ -26,34 +26,3 @@ export const ErrorSnackbar = forwardRef<HTMLDivElement, CustomContentProps>(
     );
   }
 );
-
-// export function Snackbar({ id, message, ref }: CustomContentProps) {
-//   const { closeSnackbar } = useSnackbar();
-//   const handleCloseSnackbar = () => closeSnackbar(id);
-
-//   return (
-//     <SnackbarContent ref={ref}>
-//       <div className="toast toast-end">
-//         <div>
-//           <Icon icon="prime:times" />
-//         </div>
-//         <div className="alert alert-success">
-//           <span>{message}</span>
-//         </div>
-//       </div>
-//     </SnackbarContent>
-
-//     // <SnackbarContent>
-//     //   <Container>
-//     //     {variant === 'success' ? <CheckIcon /> : <TimesIcon />}
-//     //     <MessageContainer>
-//     //       {message}
-//     //     </MessageContainer>
-//     //     <DismissButton onClick={handleCloseSnackbar}>
-//     //       <ScreenReaderOnlyText>Close snackbar<ScreenReaderOnlyText>
-//     //       <CloseIcon aria-hidden />
-//     //     </DismissButton>
-//     //   </Container>
-//     // </SnackbarContent>
-//   );
-// }
