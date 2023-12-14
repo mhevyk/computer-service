@@ -1,8 +1,8 @@
 import { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useSnackbar } from "notistack";
-import { Input } from "@components/ui/Input";
-import { Button } from "@components/ui/Button";
+import { Input } from "@components/Input";
+import { Button } from "@components/Button";
 import { useForm } from "@auth/hooks/useForm";
 import { useRegistration } from "@auth/hooks/useRegistration";
 

@@ -1,7 +1,7 @@
 import { Fragment } from "react";
-import { Button } from "@components/ui/Button";
-import { Dropdown } from "@components/ui/Dropdown";
-import { NavLink } from "@components/ui/NavLink";
+import { Button } from "@components/Button";
+import { Dropdown } from "@components/Dropdown";
+import { NavLink } from "@components/NavLink";
 import { MenuItem, menu as rootMenu } from "../menu";
 import { concatPaths } from "./concatPaths";
 
@@ -11,7 +11,7 @@ function renderMenuItems(item: MenuItem) {
       <Dropdown
         label={<NavLink to={item.path}>{item.label}</NavLink>}
         items={item.children}
-        renderItem={childItem => (
+        renderItem={(childItem) => (
           <NavLink to={concatPaths(item.path, childItem.path)}>
             {childItem.label}
           </NavLink>
@@ -30,7 +30,7 @@ function renderMenuItems(item: MenuItem) {
 export function renderCenterMenu() {
   return (
     <ul className="menu menu-horizontal px-1">
-      {rootMenu.map(item => (
+      {rootMenu.map((item) => (
         <Fragment key={item.label}>{renderMenuItems(item)}</Fragment>
       ))}
     </ul>

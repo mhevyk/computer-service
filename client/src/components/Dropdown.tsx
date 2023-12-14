@@ -53,7 +53,7 @@ export function Dropdown<T extends DropdownItem>({
         className="dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box w-52"
         onClick={handleDropdownContentClick}
       >
-        {items.map(item => (
+        {items.map((item) => (
           <li key={item.label}>{renderItem(item)}</li>
         ))}
       </ul>

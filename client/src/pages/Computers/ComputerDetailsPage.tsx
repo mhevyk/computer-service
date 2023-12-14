@@ -3,7 +3,7 @@ import { ComputerComponents } from "./FactoryComputersPage/components/ComputerCo
 import { useCart } from "@context/CartContext/useCart";
 import { useComputer } from "@computers/hooks/useComputer";
 import { formatDate } from "@utils/formatDate";
-import { Button } from "@components/ui/Button";
+import { Button } from "@components/Button";
 
 export function ComputerDetailsPage() {
   const { computerId } = useParams();

@@ -1,4 +1,4 @@
-import { Button } from "@components/ui/Button";
+import { Button } from "@components/Button";
 import { useCart } from "@context/CartContext/useCart";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Fragment } from "react";

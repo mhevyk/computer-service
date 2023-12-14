@@ -2,8 +2,8 @@ import { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useLogin } from "@features/authentication/hooks/useLogin";
 import { useForm } from "@features/authentication/hooks/useForm";
-import { Input } from "@components/ui/Input";
-import { Button } from "@components/ui/Button";
+import { Input } from "@components/Input";
+import { Button } from "@components/Button";
 
 const initialData = {
   username: "",
