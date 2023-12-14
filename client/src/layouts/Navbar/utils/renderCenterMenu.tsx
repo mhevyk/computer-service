@@ -21,8 +21,8 @@ function renderMenuItems(item: MenuItem) {
   }
 
   return (
-    <Button variant="ghost" size="sm">
-      <NavLink to={item.path}>{item.label}</NavLink>
+    <Button variant="ghost" size="sm" as={NavLink} to={item.path}>
+      {item.label}
     </Button>
   );
 }

@@ -1,4 +1,9 @@
-import { ComponentProps, PropsWithChildren, ReactNode } from "react";
+import {
+  ComponentPropsWithoutRef,
+  ElementType,
+  PropsWithChildren,
+  ReactNode,
+} from "react";
 import { Size, Variant } from "@types";
 import { twMerge } from "tailwind-merge";
 
@@ -26,15 +31,15 @@ function composeVariantClassName(variant: Variant) {
   }
 }
 
-type ButtonProps = PropsWithChildren &
-  ComponentProps<"button"> & {
-    variant?: Variant;
-    size?: Size;
-    icon?: ReactNode;
-    isLoading?: boolean;
-  };
+type ButtonProps<T extends ElementType> = PropsWithChildren & {
+  variant?: Variant;
+  size?: Size;
+  icon?: ReactNode;
+  isLoading?: boolean;
+  as?: T;
+} & ComponentPropsWithoutRef<T>;
 
-export function Button({
+export function Button<T extends ElementType>({
   children,
   variant = "accent",
   size = "md",
@@ -42,8 +47,11 @@ export function Button({
   className,
   isLoading = false,
   disabled,
+  as,
   ...props
-}: ButtonProps) {
+}: ButtonProps<T>) {
+  const Component = as ?? "button";
+
   const classes = [
     "btn",
     composeSizeClassName(size),
@@ -52,7 +60,7 @@ export function Button({
   ];
 
   return (
-    <button
+    <Component
       className={twMerge(classes, className)}
       disabled={isLoading || disabled}
       {...props}
@@ -63,6 +71,6 @@ export function Button({
       ) : (
         icon
       )}
-    </button>
+    </Component>
   );
 }
