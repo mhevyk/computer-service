@@ -10,13 +10,13 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 describe("Authorization API tests", () => {
-  before(done => {
+  before((done) => {
     TokenModel.truncate({ cascade: true });
     UserModel.truncate({ cascade: true });
     done();
   });
 
-  it("registers user correctly", done => {
+  it("registers user correctly", (done) => {
     const AUTH_CREDENTIALS = {
       username: "testuser",
       password: "testpassword",
@@ -41,7 +41,7 @@ describe("Authorization API tests", () => {
       });
   });
 
-  it("fails registration when credentials are not specified", done => {
+  it("fails registration when credentials are not specified", (done) => {
     const AUTH_CREDENTIALS = {};
 
     chai
@@ -58,7 +58,7 @@ describe("Authorization API tests", () => {
       });
   });
 
-  it("fails registration if user already exists", done => {
+  it("fails registration if user already exists", (done) => {
     const AUTH_CREDENTIALS = {
       username: "testpassword",
       password: "testpassword",
@@ -75,7 +75,7 @@ describe("Authorization API tests", () => {
       });
   });
 
-  it("fails registration if request body validation fails", done => {
+  it("fails registration if request body validation fails", (done) => {
     const AUTH_CREDENTIALS = {
       username: "testuser",
       password: "1",
@@ -96,7 +96,7 @@ describe("Authorization API tests", () => {
       });
   });
 
-  it("logins registered user correctly", done => {
+  it("logins registered user correctly", (done) => {
     const AUTH_CREDENTIALS = {
       username: "testuser",
       password: "testpassword",
@@ -120,7 +120,7 @@ describe("Authorization API tests", () => {
       });
   });
 
-  it("fails login when user is unregistered", done => {
+  it("fails login when user is unregistered", (done) => {
     const AUTH_CREDENTIALS = {
       username: "unregistered_user",
       password: "testpassword",
@@ -137,7 +137,7 @@ describe("Authorization API tests", () => {
       });
   });
 
-  it("fails login if password is incorrect", done => {
+  it("fails login if password is incorrect", (done) => {
     const AUTH_CREDENTIALS = {
       username: "testuser",
       password: "wrong_password",

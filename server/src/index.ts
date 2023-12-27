@@ -9,6 +9,7 @@ import orderRoutes from "./routes/order";
 import errorMiddleware from "./middlewares/error";
 import corsMiddleware from "./middlewares/cors";
 import { IS_PROD } from "./constants/global";
+import backupDatabaseJob from "./jobs/backupDatabase";
 
 const PORT = process.env.PORT || 5000;
 
@@ -28,7 +29,6 @@ function handleListen() {
 }
 
 if (IS_PROD) {
-  const backupDatabaseJob = require("./jobs/backupDatabase");
   backupDatabaseJob.start();
 }
 

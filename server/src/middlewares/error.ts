@@ -16,7 +16,7 @@ export default function (
   if (err instanceof APIError) {
     return res.status(err.status).json({
       message: err.message,
-      errors: err.errors.map(error => error.msg),
+      errors: err.errors.map((error) => error.msg),
     });
   }
 
